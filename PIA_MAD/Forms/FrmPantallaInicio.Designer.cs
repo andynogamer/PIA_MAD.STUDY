@@ -28,129 +28,121 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.components = new System.ComponentModel.Container();
+            this.siticoneShadowForm1 = new Siticone.Desktop.UI.WinForms.SiticoneShadowForm(this.components);
+            this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.siticoneControlBox1 = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
+            this.siticoneControlBox2 = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
+            this.siticoneControlBox3 = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
+            this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.siticonePanel1.SuspendLayout();
+            this.siticonePanel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // siticonePanel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1000, 55);
-            this.panel1.TabIndex = 0;
+            this.siticonePanel1.Controls.Add(this.siticoneControlBox3);
+            this.siticonePanel1.Controls.Add(this.siticoneControlBox2);
+            this.siticonePanel1.Controls.Add(this.siticoneControlBox1);
+            this.siticonePanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.siticonePanel1.Location = new System.Drawing.Point(0, 0);
+            this.siticonePanel1.Name = "siticonePanel1";
+            this.siticonePanel1.Size = new System.Drawing.Size(1031, 42);
+            this.siticonePanel1.TabIndex = 0;
             // 
-            // panel2
+            // siticoneControlBox1
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.Control;
-            this.panel2.Controls.Add(this.tableLayoutPanel1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 55);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 459);
-            this.panel2.TabIndex = 1;
+            this.siticoneControlBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.siticoneControlBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
+            this.siticoneControlBox1.IconColor = System.Drawing.Color.White;
+            this.siticoneControlBox1.Location = new System.Drawing.Point(986, 0);
+            this.siticoneControlBox1.Name = "siticoneControlBox1";
+            this.siticoneControlBox1.Size = new System.Drawing.Size(45, 42);
+            this.siticoneControlBox1.TabIndex = 1;
             // 
-            // tableLayoutPanel1
+            // siticoneControlBox2
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.button2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 96);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.siticoneControlBox2.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MaximizeBox;
+            this.siticoneControlBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.siticoneControlBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
+            this.siticoneControlBox2.IconColor = System.Drawing.Color.White;
+            this.siticoneControlBox2.Location = new System.Drawing.Point(941, 0);
+            this.siticoneControlBox2.Name = "siticoneControlBox2";
+            this.siticoneControlBox2.Size = new System.Drawing.Size(45, 42);
+            this.siticoneControlBox2.TabIndex = 2;
             // 
-            // button1
+            // siticoneControlBox3
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(0, 3);
-            this.button1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 42);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.siticoneControlBox3.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MinimizeBox;
+            this.siticoneControlBox3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.siticoneControlBox3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
+            this.siticoneControlBox3.IconColor = System.Drawing.Color.White;
+            this.siticoneControlBox3.Location = new System.Drawing.Point(896, 0);
+            this.siticoneControlBox3.Name = "siticoneControlBox3";
+            this.siticoneControlBox3.Size = new System.Drawing.Size(45, 42);
+            this.siticoneControlBox3.TabIndex = 3;
             // 
-            // button2
+            // siticonePanel2
             // 
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(0, 51);
-            this.button2.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(200, 42);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.siticonePanel2.Controls.Add(this.siticoneButton1);
+            this.siticonePanel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.siticonePanel2.Location = new System.Drawing.Point(0, 42);
+            this.siticonePanel2.Name = "siticonePanel2";
+            this.siticonePanel2.Size = new System.Drawing.Size(200, 529);
+            this.siticonePanel2.TabIndex = 1;
             // 
-            // panel3
+            // siticoneButton1
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.Control;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 55);
-            this.panel3.TabIndex = 0;
+            this.siticoneButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.siticoneButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.siticoneButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.siticoneButton1.ForeColor = System.Drawing.Color.White;
+            this.siticoneButton1.Location = new System.Drawing.Point(0, 0);
+            this.siticoneButton1.Name = "siticoneButton1";
+            this.siticoneButton1.Size = new System.Drawing.Size(200, 57);
+            this.siticoneButton1.TabIndex = 0;
+            this.siticoneButton1.Text = "siticoneButton1";
             // 
-            // pictureBox1
+            // siticonePanel3
             // 
-            this.pictureBox1.Image = global::PIA_MAD.Properties.Resources.Sin_título_1;
-            this.pictureBox1.Location = new System.Drawing.Point(702, 16);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.siticonePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.siticonePanel3.Location = new System.Drawing.Point(200, 42);
+            this.siticonePanel3.Name = "siticonePanel3";
+            this.siticonePanel3.Size = new System.Drawing.Size(831, 529);
+            this.siticonePanel3.TabIndex = 2;
             // 
             // FrmPantallaInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1000, 514);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ClientSize = new System.Drawing.Size(1031, 571);
+            this.Controls.Add(this.siticonePanel3);
+            this.Controls.Add(this.siticonePanel2);
+            this.Controls.Add(this.siticonePanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmPantallaInicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.siticonePanel1.ResumeLayout(false);
+            this.siticonePanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private Siticone.Desktop.UI.WinForms.SiticoneShadowForm siticoneShadowForm1;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
+        private Siticone.Desktop.UI.WinForms.SiticoneControlBox siticoneControlBox3;
+        private Siticone.Desktop.UI.WinForms.SiticoneControlBox siticoneControlBox2;
+        private Siticone.Desktop.UI.WinForms.SiticoneControlBox siticoneControlBox1;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton1;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel3;
     }
 }
