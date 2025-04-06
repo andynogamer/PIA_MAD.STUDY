@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace PIA_MAD.Forms
 {
-    public partial class UserControl1 : UserControl
+    public partial class UsCtrlHoteles : UserControl
     {
-        public UserControl1()
+        public UsCtrlHoteles()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void label3_Click(object sender, EventArgs e)

@@ -1,5 +1,4 @@
-﻿using PIA_MAD.Forms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PIA_MAD
+namespace PIA_MAD.Forms
 {
-    public partial class Form1 : Form
+    public partial class UsCtrlUsuarios : UserControl
     {
-        public Form1()
+        public UsCtrlUsuarios()
         {
             InitializeComponent();
         }
@@ -23,12 +22,9 @@ namespace PIA_MAD
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void label3_Click(object sender, EventArgs e)
         {
-            FrmPantallaInicio newForm = new FrmPantallaInicio();
-            
-            newForm.ShowDialog();
-            this.Close();
+
         }
     }
 }

@@ -61,11 +61,23 @@
     <Compile Include="Forms\FrmPantallaInicio.Designer.cs">
       <DependentUpon>FrmPantallaInicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UserControl1.cs">
+    <Compile Include="Forms\UsCtrlTipoHabit.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <Compile Include="Forms\UsCtrlTipoHabit.Designer.cs">
+      <DependentUpon>UsCtrlTipoHabit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UsCtrlUsuarios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UsCtrlUsuarios.Designer.cs">
+      <DependentUpon>UsCtrlUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UsCtrlHoteles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UsCtrlHoteles.Designer.cs">
+      <DependentUpon>UsCtrlHoteles.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,8 +87,14 @@
     <EmbeddedResource Include="Forms\FrmPantallaInicio.resx">
       <DependentUpon>FrmPantallaInicio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UserControl1.resx">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\UsCtrlTipoHabit.resx">
+      <DependentUpon>UsCtrlTipoHabit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsCtrlUsuarios.resx">
+      <DependentUpon>UsCtrlUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsCtrlHoteles.resx">
+      <DependentUpon>UsCtrlHoteles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
