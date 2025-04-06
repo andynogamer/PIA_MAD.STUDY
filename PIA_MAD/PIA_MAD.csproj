@@ -73,6 +73,24 @@
     <Compile Include="Forms\UsCtrlHabit.Designer.cs">
       <DependentUpon>UsCtrlHabit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UsCtrlHistorialCliente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UsCtrlHistorialCliente.Designer.cs">
+      <DependentUpon>UsCtrlHistorialCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UsCtrlReporteOcup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UsCtrlReporteOcup.Designer.cs">
+      <DependentUpon>UsCtrlReporteOcup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UsCtrlReporteVentas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UsCtrlReporteVentas.Designer.cs">
+      <DependentUpon>UsCtrlReporteVentas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UsCtrlReservaciones.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -110,6 +128,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UsCtrlHabit.resx">
       <DependentUpon>UsCtrlHabit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsCtrlHistorialCliente.resx">
+      <DependentUpon>UsCtrlHistorialCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsCtrlReporteOcup.resx">
+      <DependentUpon>UsCtrlReporteOcup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsCtrlReporteVentas.resx">
+      <DependentUpon>UsCtrlReporteVentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UsCtrlReservaciones.resx">
       <DependentUpon>UsCtrlReservaciones.cs</DependentUpon>

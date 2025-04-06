@@ -71,5 +71,24 @@ namespace PIA_MAD.Forms
             UsCtrlReservaciones usCtrlReservaciones = new UsCtrlReservaciones();
             ShowView(usCtrlReservaciones);
         }
+
+        private void siticoneButton7_Click(object sender, EventArgs e)
+        {
+            UsCtrlReporteOcup usCtrlReporteOcup = new UsCtrlReporteOcup();
+            ShowView(usCtrlReporteOcup);
+
+        }
+
+        private void siticoneButton9_Click(object sender, EventArgs e)
+        {
+            UsCtrlHistorialCliente usCtrlHistorialClient = new UsCtrlHistorialCliente();
+            ShowView(usCtrlHistorialClient);
+        }
+
+        private void siticoneButton8_Click(object sender, EventArgs e)
+        {
+            UsCtrlReporteVentas usCtrlReporteVentas = new UsCtrlReporteVentas();
+            ShowView(usCtrlReporteVentas);
+        }
     }
 }
