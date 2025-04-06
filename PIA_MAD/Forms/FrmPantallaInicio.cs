@@ -53,5 +53,23 @@ namespace PIA_MAD.Forms
             UsCtrlTipoHabit usCtrlTipoHabit = new UsCtrlTipoHabit();
             ShowView(usCtrlTipoHabit);
         }
+
+        private void siticoneButton3_Click(object sender, EventArgs e)
+        {
+            UsCtrlHabit usCtrlHabit = new UsCtrlHabit();
+            ShowView(usCtrlHabit);
+        }
+
+        private void siticoneButton5_Click(object sender, EventArgs e)
+        {
+            UsCtrlClientes usCtrlClientes = new UsCtrlClientes();
+            ShowView(usCtrlClientes);
+        }
+
+        private void siticoneButton6_Click(object sender, EventArgs e)
+        {
+            UsCtrlReservaciones usCtrlReservaciones = new UsCtrlReservaciones();
+            ShowView(usCtrlReservaciones);
+        }
     }
 }

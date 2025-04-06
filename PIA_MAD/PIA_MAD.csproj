@@ -61,6 +61,24 @@
     <Compile Include="Forms\FrmPantallaInicio.Designer.cs">
       <DependentUpon>FrmPantallaInicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UsCtrlClientes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UsCtrlClientes.Designer.cs">
+      <DependentUpon>UsCtrlClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UsCtrlHabit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UsCtrlHabit.Designer.cs">
+      <DependentUpon>UsCtrlHabit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UsCtrlReservaciones.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UsCtrlReservaciones.Designer.cs">
+      <DependentUpon>UsCtrlReservaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UsCtrlTipoHabit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -86,6 +104,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmPantallaInicio.resx">
       <DependentUpon>FrmPantallaInicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsCtrlClientes.resx">
+      <DependentUpon>UsCtrlClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsCtrlHabit.resx">
+      <DependentUpon>UsCtrlHabit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsCtrlReservaciones.resx">
+      <DependentUpon>UsCtrlReservaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UsCtrlTipoHabit.resx">
       <DependentUpon>UsCtrlTipoHabit.cs</DependentUpon>

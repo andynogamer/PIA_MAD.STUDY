@@ -40,12 +40,16 @@
             this.siticoneButton2 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticoneButton3 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticoneButton4 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.siticoneButton5 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.siticoneButton6 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.siticoneButton7 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticonePanel1.SuspendLayout();
             this.siticonePanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // siticonePanel1
             // 
+            this.siticonePanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
             this.siticonePanel1.Controls.Add(this.siticoneControlBox3);
             this.siticonePanel1.Controls.Add(this.siticoneControlBox2);
             this.siticonePanel1.Controls.Add(this.siticoneControlBox1);
@@ -89,6 +93,9 @@
             // 
             // siticonePanel2
             // 
+            this.siticonePanel2.Controls.Add(this.siticoneButton7);
+            this.siticonePanel2.Controls.Add(this.siticoneButton6);
+            this.siticonePanel2.Controls.Add(this.siticoneButton5);
             this.siticonePanel2.Controls.Add(this.siticoneButton3);
             this.siticonePanel2.Controls.Add(this.siticoneButton4);
             this.siticonePanel2.Controls.Add(this.siticoneButton2);
@@ -105,7 +112,7 @@
             this.siticoneButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.siticoneButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.siticoneButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.siticoneButton1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.siticoneButton1.ForeColor = System.Drawing.Color.White;
             this.siticoneButton1.Location = new System.Drawing.Point(0, 0);
             this.siticoneButton1.Name = "siticoneButton1";
@@ -129,7 +136,7 @@
             this.siticoneButton2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.siticoneButton2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.siticoneButton2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneButton2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.siticoneButton2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.siticoneButton2.ForeColor = System.Drawing.Color.White;
             this.siticoneButton2.Location = new System.Drawing.Point(0, 59);
             this.siticoneButton2.Name = "siticoneButton2";
@@ -144,13 +151,14 @@
             this.siticoneButton3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.siticoneButton3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.siticoneButton3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneButton3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.siticoneButton3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.siticoneButton3.ForeColor = System.Drawing.Color.White;
             this.siticoneButton3.Location = new System.Drawing.Point(0, 177);
             this.siticoneButton3.Name = "siticoneButton3";
             this.siticoneButton3.Size = new System.Drawing.Size(200, 57);
             this.siticoneButton3.TabIndex = 3;
             this.siticoneButton3.Text = "GESTIÓN DE HABITACIONES";
+            this.siticoneButton3.Click += new System.EventHandler(this.siticoneButton3_Click);
             // 
             // siticoneButton4
             // 
@@ -158,7 +166,7 @@
             this.siticoneButton4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.siticoneButton4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.siticoneButton4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneButton4.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.siticoneButton4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.siticoneButton4.ForeColor = System.Drawing.Color.White;
             this.siticoneButton4.Location = new System.Drawing.Point(0, 118);
             this.siticoneButton4.Name = "siticoneButton4";
@@ -166,6 +174,50 @@
             this.siticoneButton4.TabIndex = 2;
             this.siticoneButton4.Text = "TIPOS DE HABITACIÓN";
             this.siticoneButton4.Click += new System.EventHandler(this.siticoneButton4_Click);
+            // 
+            // siticoneButton5
+            // 
+            this.siticoneButton5.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton5.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton5.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.siticoneButton5.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.siticoneButton5.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.siticoneButton5.ForeColor = System.Drawing.Color.White;
+            this.siticoneButton5.Location = new System.Drawing.Point(0, 236);
+            this.siticoneButton5.Name = "siticoneButton5";
+            this.siticoneButton5.Size = new System.Drawing.Size(200, 57);
+            this.siticoneButton5.TabIndex = 4;
+            this.siticoneButton5.Text = "GESTIÓN DE CLIENTES";
+            this.siticoneButton5.Click += new System.EventHandler(this.siticoneButton5_Click);
+            // 
+            // siticoneButton6
+            // 
+            this.siticoneButton6.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton6.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton6.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.siticoneButton6.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.siticoneButton6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.siticoneButton6.ForeColor = System.Drawing.Color.White;
+            this.siticoneButton6.Location = new System.Drawing.Point(0, 295);
+            this.siticoneButton6.Name = "siticoneButton6";
+            this.siticoneButton6.Size = new System.Drawing.Size(200, 57);
+            this.siticoneButton6.TabIndex = 5;
+            this.siticoneButton6.Text = "RESERVACIONES";
+            this.siticoneButton6.Click += new System.EventHandler(this.siticoneButton6_Click);
+            // 
+            // siticoneButton7
+            // 
+            this.siticoneButton7.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton7.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton7.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.siticoneButton7.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.siticoneButton7.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.siticoneButton7.ForeColor = System.Drawing.Color.White;
+            this.siticoneButton7.Location = new System.Drawing.Point(0, 354);
+            this.siticoneButton7.Name = "siticoneButton7";
+            this.siticoneButton7.Size = new System.Drawing.Size(200, 57);
+            this.siticoneButton7.TabIndex = 6;
+            this.siticoneButton7.Text = "REPORTE OCUPACIÓN";
             // 
             // FrmPantallaInicio
             // 
@@ -199,5 +251,8 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton2;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton3;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton4;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton5;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton6;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton7;
     }
 }
