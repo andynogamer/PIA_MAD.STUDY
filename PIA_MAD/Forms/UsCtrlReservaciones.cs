@@ -16,5 +16,10 @@ namespace PIA_MAD.Forms
         {
             InitializeComponent();
         }
+
+        private void siticoneButton3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
