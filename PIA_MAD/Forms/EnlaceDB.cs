@@ -22,6 +22,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows.Forms;
+using PIA_MAD.Forms;
 
 
 /*
@@ -100,8 +101,49 @@ namespace WindowsFormsApplication1
             return insertado;
         }
 
+        /*
+         *************************************** AQUI EMPIEZA LO BUENO *************************************
+         */
+        public bool ValidarLogin(string correo, string contraseña)
+        {
+            bool loginCorrecto = false;
 
+            try
+            {
+                conectar();
+                string procedureName = "UsuLogin";
+                _comandosql = new SqlCommand(procedureName, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
 
+                _comandosql.Parameters.AddWithValue("@Correo", correo);
+                _comandosql.Parameters.AddWithValue("@Pass", contraseña);
+
+                SqlDataReader reader = _comandosql.ExecuteReader();
+
+                if (reader.Read()) // 🔵 Si encontró un usuario válido
+                {
+                    loginCorrecto = true;
+
+                    // 🔥 Aquí colocas la carga en Estructuras
+                    Estructuras.SesionUsuario.IdUsuario = Convert.ToInt32(reader["IdUsuario"]);
+                    Estructuras.SesionUsuario.Correo = reader["Correo"].ToString();
+                    Estructuras.SesionUsuario.TipoUsu = Convert.ToInt32(reader["TipoUsu"]);
+                }
+
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                loginCorrecto = false;
+                // (Opcional: puedes capturar el error)
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return loginCorrecto;
+        }
 
 
         /*

@@ -27,17 +27,26 @@ namespace PIA_MAD
         private void button2_Click(object sender, EventArgs e)
         {
 
-            EnlaceDB enlace = new EnlaceDB(); // Instancia de la clase de conexión
-            bool exito = enlace.InsertarUsuario("isacc");
+
+            /// hay que cambiar el registro de insertar usuario.
+            /// hay que hacer que dependiendo el usuario vaya a una pantalla o otra.
+            /// 
+            EnlaceDB enlace = new EnlaceDB();
+            bool exito = enlace.ValidarLogin(txtCorreo.Text, txtContraseña.Text);
 
             if (exito)
-                MessageBox.Show("Usuario insertado correctamente.");
+            {
+                MessageBox.Show($"Bienvenido. ID de Usuario: {Estructuras.SesionUsuario.IdUsuario}, Tipo de usuario:  {Estructuras.SesionUsuario.TipoUsu}");
+
+                FrmPantallaInicio newForm = new FrmPantallaInicio();
+                newForm.ShowDialog();
+                this.Close();
+            }
             else
-                MessageBox.Show("Hubo un error al insertar el usuario.");
-            FrmPantallaInicio newForm = new FrmPantallaInicio();
-            
-            newForm.ShowDialog();
-            this.Close();
+            {
+                MessageBox.Show("Correo o contraseña incorrectos.");
+            }
+
         }
     }
 }
