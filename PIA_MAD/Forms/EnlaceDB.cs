@@ -71,39 +71,13 @@ namespace WindowsFormsApplication1
          *********************************************PRUEBAS**********************************************************************
          
          */
-        public bool InsertarUsuario(string nombreUsuario)
-        {
-            bool insertado = false;
-            try
-            {
-                conectar();
-                string query = "INSERT INTO usuarios (usuario) VALUES (@usuario)";
-                _comandosql = new SqlCommand(query, _conexion);
-                _comandosql.CommandType = CommandType.Text;
-                _comandosql.Parameters.AddWithValue("@usuario", nombreUsuario);
-
-                int resultado = _comandosql.ExecuteNonQuery(); // Devuelve el número de filas afectadas
-                if (resultado > 0)
-                {
-                    insertado = true;
-                }
-            }
-            catch (SqlException e)
-            {
-                // Aquí puedes loguear el error si quieres
-                insertado = false;
-            }
-            finally
-            {
-                desconectar();
-            }
-
-            return insertado;
-        }
+        
 
         /*
          *************************************** AQUI EMPIEZA LO BUENO *************************************
          */
+
+        /////////////////////  funcion login
         public bool ValidarLogin(string correo, string contraseña)
         {
             bool loginCorrecto = false;
@@ -144,6 +118,60 @@ namespace WindowsFormsApplication1
 
             return loginCorrecto;
         }
+
+        /************************************************Funcion insertar usuario ********************************************************/
+        public bool RegistrarUsuario(
+        string nombre, string apPaterno, string apMaterno,
+        string correo, string nns, DateTime fechaNac,
+        string telCasa, string telCel, string contraseña, int idUsu)
+        {
+            bool insertado = false;
+
+            try
+            {
+                conectar();
+                string procedureName = "RegistrarOp";
+                _comandosql = new SqlCommand(procedureName, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+
+                _comandosql.Parameters.AddWithValue("@Nombre", nombre);
+                _comandosql.Parameters.AddWithValue("@ApPaterno", apPaterno);
+                _comandosql.Parameters.AddWithValue("@ApMaterno", apMaterno);
+                _comandosql.Parameters.AddWithValue("@Correo", correo);
+                _comandosql.Parameters.AddWithValue("@NNS", nns);
+                _comandosql.Parameters.AddWithValue("@FechaNac", fechaNac.Date);
+                _comandosql.Parameters.AddWithValue("@Tel_casa", telCasa);
+                _comandosql.Parameters.AddWithValue("@Tel_cel", telCel);
+                _comandosql.Parameters.AddWithValue("@Contraseña", contraseña);
+                _comandosql.Parameters.AddWithValue("@IdUsu", idUsu);
+
+                int resultado = _comandosql.ExecuteNonQuery(); // filas afectadas
+
+                insertado = resultado > 0;
+            }
+            catch (SqlException ex)
+            {
+                // Aquí podrías registrar el error con logs si lo deseas
+                insertado = false;
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return insertado;
+        }
+
+
+
+
+
+
+
+
+
+
+
 
 
         /*

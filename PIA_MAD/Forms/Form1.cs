@@ -29,7 +29,7 @@ namespace PIA_MAD
 
 
             /// hay que cambiar el registro de insertar usuario.
-            /// hay que hacer que dependiendo el usuario vaya a una pantalla o otra.
+            /// hay que hacer que dependiendo el usuario vaya a una pantalla y deshabilite lo que no puede hacer.
             /// 
             EnlaceDB enlace = new EnlaceDB();
             bool exito = enlace.ValidarLogin(txtCorreo.Text, txtContraseña.Text);
