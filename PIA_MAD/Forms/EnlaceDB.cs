@@ -23,6 +23,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows.Forms;
 using PIA_MAD.Forms;
+using Siticone.Desktop.UI.WinForms;
 
 
 /*
@@ -161,6 +162,59 @@ namespace WindowsFormsApplication1
 
             return insertado;
         }
+
+        public DataTable ObtenerUsuarios()
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("MostrarUsu", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                // Log o mensaje si deseas
+                MessageBox.Show("Error al obtener usuarios: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+        public bool CambiarEstatusUsuario(int idUsuario, string nuevoEstatus)
+        {
+            try
+            {
+                conectar();
+                SqlCommand cmd = new SqlCommand("CambiarEstatusUsuario", _conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                cmd.Parameters.AddWithValue("@NuevoEstatus", nuevoEstatus);
+                cmd.Parameters.AddWithValue("@IdModificador", Estructuras.SesionUsuario.IdUsuario);
+
+                int rows = cmd.ExecuteNonQuery();
+                return rows > 0;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
+
+
 
 
 
