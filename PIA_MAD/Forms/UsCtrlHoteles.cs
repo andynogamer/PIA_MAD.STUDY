@@ -192,7 +192,7 @@ namespace PIA_MAD.Forms
                 Hotel.Text,        // tu TextBox se llama quizá txtHotelNombre
                 idDir,
                 ZonaTuris.Text,      // tu TextBox de zona turística
-                Convert.ToInt32(siticoneTextBox6.Text),
+                Convert.ToInt32(Pisos.Text),
                 FechaOp.Value.Date       // tu DateTimePicker
             );
 
@@ -249,6 +249,7 @@ namespace PIA_MAD.Forms
 
                         Hotel.Text = fila["Nombre_Hotel"].ToString();
                         ZonaTuris.Text = fila["Zona_turistica"].ToString();
+                        Pisos.Text = fila["Pisos"].ToString();
                         FechaOp.Value = Convert.ToDateTime(fila["Fecha_Ini_Ope"]);
 
                         // Ahora llena los ComboBox de dirección con los valores
@@ -273,6 +274,16 @@ namespace PIA_MAD.Forms
                     MessageBox.Show("Error al convertir el ID del hotel.");
                 }
             }
+        }
+
+        private void Pisos_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void siticoneButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

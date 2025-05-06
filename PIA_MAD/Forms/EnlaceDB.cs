@@ -546,6 +546,8 @@ namespace WindowsFormsApplication1
 
             return tabla;
         }
+
+
         public bool ActualizarHotel(int idHotel, string nombreHotel, int idDireccion, string zonaTuristica, DateTime fechaIniOpe)
         {
             bool exito = false;
@@ -578,9 +580,182 @@ namespace WindowsFormsApplication1
             return exito;
         }
 
+        public bool InsertarTipoHabitacion(int cantPers, string caracteristicas,string nivel, int camas, string amenidades,
+                                   float precio, int idHotel, string tipoCamas)
+        {
+            SqlCommand cmd = new SqlCommand("InsertarTipoHabitacion", _conexion);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Cant_Pers", cantPers);
+            cmd.Parameters.AddWithValue("@Caracteristicas",caracteristicas);
+            cmd.Parameters.AddWithValue("@Nivel", nivel);
+            cmd.Parameters.AddWithValue("@Camas", camas);
+            cmd.Parameters.AddWithValue("@PrecioxPersonaXNoche", precio);
+            cmd.Parameters.AddWithValue("@IdUsuario", Estructuras.SesionUsuario.IdUsuario);
+            cmd.Parameters.AddWithValue("@IdHotel", idHotel);
+            cmd.Parameters.AddWithValue("@Tipo_camas", tipoCamas);
 
+            _conexion.Open();
+            int rows = cmd.ExecuteNonQuery();
+            _conexion.Close();
 
+            return rows > 0;
+        }
+        public DataTable ObtenerTiposHabitacionPorHotel(int idHotel,int idTipo)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("ObtenerTiposHabitacionPorHotel", _conexion);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.AddWithValue("@IdHotel", idHotel);
+            da.SelectCommand.Parameters.AddWithValue("@IdTipo", idTipo);
+            DataTable tabla = new DataTable();
+            da.Fill(tabla);
+            return tabla;
+        }
+        public DataTable ObtenerTiposHabitacionPorHotel2(int idHotel)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("ObtenerTiposHabitacionPorHotel2", _conexion);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.AddWithValue("@IdHotel", idHotel);
+            DataTable tabla = new DataTable();
+            da.Fill(tabla);
+            return tabla;
+        }
+        public bool ActualizarTipoHabitacion(int idTipo, int cantPers, string caracteristicas, string nivel,
+                                     int camas, string tipoCamas, float precio)
+        {
+            using (SqlCommand cmd = new SqlCommand("ActualizarTipoHabitacion", _conexion))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IdTipo", idTipo);
+                cmd.Parameters.AddWithValue("@Cant_Pers", cantPers);
+                cmd.Parameters.AddWithValue("@Caracteristicas", caracteristicas);
+                cmd.Parameters.AddWithValue("@Nivel", nivel);
+                cmd.Parameters.AddWithValue("@Camas", camas);
+                cmd.Parameters.AddWithValue("@Tipo_camas", tipoCamas);
+                cmd.Parameters.AddWithValue("@PrecioxPersonaxNoche", precio);
+                cmd.Parameters.AddWithValue("@IdUsuario", Estructuras.SesionUsuario.IdUsuario);
 
+                _conexion.Open();
+                int rows = cmd.ExecuteNonQuery();
+                _conexion.Close();
+
+                return rows > 0;
+            }
+        }
+        /********************************** HABITACIONES ***********************/
+        public bool InsertarHabitaciones(int idHotel, int NumHabitacion, int Tipo, string caracteristicas)
+        {
+            bool exito = false;
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("InsertarHabitaciones", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdHotel", idHotel); 
+                comando.Parameters.AddWithValue("@Numero_Habitacion", NumHabitacion);
+                comando.Parameters.AddWithValue("@IdTipo", Tipo);
+                comando.Parameters.AddWithValue("@IdUsuario", Estructuras.SesionUsuario.IdUsuario);
+                comando.Parameters.AddWithValue("@Caracteristicas",caracteristicas);
+
+                int rows = comando.ExecuteNonQuery();
+                // si devuelve –1 o >0 → éxito
+                exito = (rows != 0);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al insertar habitacion " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return exito;
+        }
+
+        public DataTable BuscarHabitaciones(int idHotel, int idTipo)
+        {
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("BuscarHabitaciones", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                comando.Parameters.AddWithValue("@IdHotel", idHotel);
+                comando.Parameters.AddWithValue("@IdTipo", idTipo);
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al buscar habitaciones: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+        public bool ActualizarHabitacion(int idHotel, int NumHabitacion, int IdTipo, string status,
+                                     string caracteristicas)
+        {
+            using (SqlCommand cmd = new SqlCommand("ActualizarHabitacion", _conexion))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IdHotel", idHotel);
+                cmd.Parameters.AddWithValue("@Numero_Habitacion", NumHabitacion);
+                cmd.Parameters.AddWithValue("@IdTipo", IdTipo);
+                cmd.Parameters.AddWithValue("@Status", status);
+                cmd.Parameters.AddWithValue("@Caracteristicas", caracteristicas);
+                cmd.Parameters.AddWithValue("@IdUsuario", Estructuras.SesionUsuario.IdUsuario);
+
+                _conexion.Open();
+                int rows = cmd.ExecuteNonQuery();
+                _conexion.Close();
+
+                return rows > 0;
+            }
+        }
+
+        /************************ Clientes ************************/
+        public bool InsertarCliente(string rfc, string nombres, string apPaterno, string apMaterno,
+                            int idDireccion, string telCasa, string telCel, string correo,
+                            char estadoCivil, DateTime fechaNac)
+        {
+            try
+            {
+                conectar();
+                SqlCommand cmd = new SqlCommand("InsertarCliente", _conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@RFC", rfc);
+                cmd.Parameters.AddWithValue("@Nombres", nombres);
+                cmd.Parameters.AddWithValue("@ApPaterno", apPaterno);
+                cmd.Parameters.AddWithValue("@ApMaterno", apMaterno);
+                cmd.Parameters.AddWithValue("@IdDireccion", idDireccion);
+                cmd.Parameters.AddWithValue("@TelCasa", telCasa);
+                cmd.Parameters.AddWithValue("@TelCel", telCel);
+                cmd.Parameters.AddWithValue("@Correo", correo);
+                cmd.Parameters.AddWithValue("@Estado_Civil", estadoCivil);
+                cmd.Parameters.AddWithValue("@Fecha_Nac", fechaNac);
+                cmd.Parameters.AddWithValue("@IdUsuario", Estructuras.SesionUsuario.IdUsuario);
+
+                int filasAfectadas = cmd.ExecuteNonQuery();
+                return filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar cliente: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
 
         /*
          

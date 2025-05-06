@@ -31,7 +31,7 @@
             this.ZonaTuris = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.siticoneTextBox6 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.Pisos = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Calle = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -114,25 +114,26 @@
             this.label6.TabIndex = 29;
             this.label6.Text = "Ciudad";
             // 
-            // siticoneTextBox6
+            // Pisos
             // 
-            this.siticoneTextBox6.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.siticoneTextBox6.DefaultText = "";
-            this.siticoneTextBox6.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.siticoneTextBox6.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.siticoneTextBox6.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.siticoneTextBox6.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.siticoneTextBox6.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.siticoneTextBox6.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.siticoneTextBox6.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.siticoneTextBox6.Location = new System.Drawing.Point(212, 409);
-            this.siticoneTextBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.siticoneTextBox6.Name = "siticoneTextBox6";
-            this.siticoneTextBox6.PasswordChar = '\0';
-            this.siticoneTextBox6.PlaceholderText = "";
-            this.siticoneTextBox6.SelectedText = "";
-            this.siticoneTextBox6.Size = new System.Drawing.Size(289, 44);
-            this.siticoneTextBox6.TabIndex = 28;
+            this.Pisos.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Pisos.DefaultText = "";
+            this.Pisos.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.Pisos.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.Pisos.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.Pisos.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.Pisos.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.Pisos.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.Pisos.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.Pisos.Location = new System.Drawing.Point(212, 409);
+            this.Pisos.Margin = new System.Windows.Forms.Padding(4);
+            this.Pisos.Name = "Pisos";
+            this.Pisos.PasswordChar = '\0';
+            this.Pisos.PlaceholderText = "";
+            this.Pisos.SelectedText = "";
+            this.Pisos.Size = new System.Drawing.Size(289, 44);
+            this.Pisos.TabIndex = 28;
+            this.Pisos.TextChanged += new System.EventHandler(this.Pisos_TextChanged);
             // 
             // label7
             // 
@@ -246,6 +247,7 @@
             this.siticoneButton1.Size = new System.Drawing.Size(240, 74);
             this.siticoneButton1.TabIndex = 0;
             this.siticoneButton1.Text = "GUARDAR";
+            this.siticoneButton1.Click += new System.EventHandler(this.siticoneButton1_Click);
             // 
             // siticonePanel1
             // 
@@ -693,7 +695,7 @@
             this.Controls.Add(this.ZonaTuris);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.siticoneTextBox6);
+            this.Controls.Add(this.Pisos);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Calle);
@@ -720,7 +722,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox ZonaTuris;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox6;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox Pisos;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox Calle;
