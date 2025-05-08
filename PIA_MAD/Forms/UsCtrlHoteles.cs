@@ -193,7 +193,7 @@ namespace PIA_MAD.Forms
                 idDir,
                 ZonaTuris.Text,      // tu TextBox de zona turística
                 Convert.ToInt32(Pisos.Text),
-                FechaOp.Value.Date       // tu DateTimePicker
+                FechaOp.Value.Date
             );
 
             if (ok)
@@ -224,7 +224,8 @@ namespace PIA_MAD.Forms
                 Hotel.Text,
                 idDireccion,
                 ZonaTuris.Text,
-                FechaOp.Value.Date // puedes guardar este ID desde el login
+                FechaOp.Value.Date, // puedes guardar este ID desde el login
+                Convert.ToInt32(Pisos.Text)
             );
 
             if (ok)

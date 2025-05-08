@@ -548,7 +548,7 @@ namespace WindowsFormsApplication1
         }
 
 
-        public bool ActualizarHotel(int idHotel, string nombreHotel, int idDireccion, string zonaTuristica, DateTime fechaIniOpe)
+        public bool ActualizarHotel(int idHotel, string nombreHotel, int idDireccion, string zonaTuristica, DateTime fechaIniOpe, int Pisos)
         {
             bool exito = false;
             try
@@ -563,7 +563,7 @@ namespace WindowsFormsApplication1
                 cmd.Parameters.AddWithValue("@ZonaTuristica", string.IsNullOrEmpty(zonaTuristica) ? (object)DBNull.Value : zonaTuristica);
                 cmd.Parameters.AddWithValue("@FechaIniOpe", fechaIniOpe);
                 cmd.Parameters.AddWithValue("@IdUsuario", Estructuras.SesionUsuario.IdUsuario); // puede venir de sesión o contexto
-
+                cmd.Parameters.AddWithValue("@Pisos",Pisos);
                 int rows = cmd.ExecuteNonQuery();
                 
                 exito = (rows >= 0); 
@@ -579,7 +579,7 @@ namespace WindowsFormsApplication1
 
             return exito;
         }
-
+        /********************************** TIPO HABITACIONES ***********************/
         public bool InsertarTipoHabitacion(int cantPers, string caracteristicas,string nivel, int camas, string amenidades,
                                    float precio, int idHotel, string tipoCamas)
         {
@@ -757,8 +757,90 @@ namespace WindowsFormsApplication1
             }
         }
 
+        // cliente - reservaciones
+
+        public DataTable ObtenerClientes(string Busqueda)
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("BuscarClientes", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@Busqueda", Busqueda);
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                // Log o mensaje si deseas
+                MessageBox.Show("Error al obtener Clientes: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+        // obtener ciudades disponibles
+        public DataTable ObtenerCiudadesDisponibles()
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("ObtenerCiudadesDisponibles", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener ciudades: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+        public DataTable ObtenerHotelesPorCiudad(int idCiudad)
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("ObtenerHotelesPorCiudad", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdCiudad", idCiudad);
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener hoteles: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+
         /*
-         
+        
          ********************************************* EJEMPLOS DEL PROFE *****************************************************
          
          */
