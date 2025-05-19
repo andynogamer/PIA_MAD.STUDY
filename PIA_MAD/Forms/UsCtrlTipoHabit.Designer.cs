@@ -44,8 +44,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.siticoneButton3 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.siticoneButton2 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticoneButton4 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cmbTiposHab = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -292,38 +290,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "TIPOS DE HABITACIÓN";
             // 
-            // siticoneButton3
-            // 
-            this.siticoneButton3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.siticoneButton3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneButton3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.siticoneButton3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.siticoneButton3.ForeColor = System.Drawing.Color.White;
-            this.siticoneButton3.Location = new System.Drawing.Point(503, 482);
-            this.siticoneButton3.Margin = new System.Windows.Forms.Padding(4);
-            this.siticoneButton3.Name = "siticoneButton3";
-            this.siticoneButton3.Size = new System.Drawing.Size(161, 55);
-            this.siticoneButton3.TabIndex = 44;
-            this.siticoneButton3.Text = "VER...";
-            // 
-            // siticoneButton2
-            // 
-            this.siticoneButton2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.siticoneButton2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneButton2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.siticoneButton2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.siticoneButton2.ForeColor = System.Drawing.Color.White;
-            this.siticoneButton2.Location = new System.Drawing.Point(747, 482);
-            this.siticoneButton2.Margin = new System.Windows.Forms.Padding(4);
-            this.siticoneButton2.Name = "siticoneButton2";
-            this.siticoneButton2.Size = new System.Drawing.Size(161, 55);
-            this.siticoneButton2.TabIndex = 43;
-            this.siticoneButton2.Text = "VER...";
-            // 
             // siticoneButton4
             // 
             this.siticoneButton4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -443,9 +409,7 @@
             this.Controls.Add(this.txtCaracteristicas);
             this.Controls.Add(this.siticoneButton4);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.siticoneButton3);
             this.Controls.Add(this.cmbTiposHab);
-            this.Controls.Add(this.siticoneButton2);
             this.Controls.Add(this.txtAmenidades);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtCamas);
@@ -487,8 +451,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtNivel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton3;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton2;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton4;
         private System.Windows.Forms.Label label9;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox cmbTiposHab;

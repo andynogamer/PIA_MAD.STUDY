@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1;
+using static Siticone.Desktop.UI.Native.WinApi;
 
 namespace PIA_MAD.Forms
 {
@@ -112,6 +113,7 @@ namespace PIA_MAD.Forms
         {
             CargarPaises();
             CargarHoteles();
+           
         }
 
         private void cmbMunicipio_SelectedIndexChanged(object sender, EventArgs e)
@@ -283,6 +285,27 @@ namespace PIA_MAD.Forms
         }
 
         private void siticoneButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+      
+        private void Costo_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ServicioNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
         {
 
         }

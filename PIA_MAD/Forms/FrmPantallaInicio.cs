@@ -24,6 +24,7 @@ namespace PIA_MAD.Forms
             siticonePanel3.Controls.Clear();
             vista.Dock = DockStyle.Fill;
             siticonePanel3.Controls.Add(vista);
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -89,6 +90,23 @@ namespace PIA_MAD.Forms
         {
             UsCtrlReporteVentas usCtrlReporteVentas = new UsCtrlReporteVentas();
             ShowView(usCtrlReporteVentas);
+        }
+
+        private void siticoneButton10_Click(object sender, EventArgs e)
+        {
+            UsCttrlChecks usCtrlChecks= new UsCttrlChecks();
+            ShowView(usCtrlChecks);
+        }
+
+        private void siticonePanel1_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void siticoneButton11_Click(object sender, EventArgs e)
+        {
+            UsCtrlServicios ctrlServicios = new UsCtrlServicios();
+            ShowView(ctrlServicios);
         }
     }
 }

@@ -90,7 +90,7 @@
             this.cmbHoteles.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cmbHoteles.ItemHeight = 30;
             this.cmbHoteles.Location = new System.Drawing.Point(581, 16);
-            this.cmbHoteles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbHoteles.Margin = new System.Windows.Forms.Padding(4);
             this.cmbHoteles.Name = "cmbHoteles";
             this.cmbHoteles.Size = new System.Drawing.Size(459, 36);
             this.cmbHoteles.TabIndex = 1;
@@ -119,7 +119,7 @@
             this.cmbTiposHab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cmbTiposHab.ItemHeight = 30;
             this.cmbTiposHab.Location = new System.Drawing.Point(465, 108);
-            this.cmbTiposHab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTiposHab.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTiposHab.Name = "cmbTiposHab";
             this.cmbTiposHab.Size = new System.Drawing.Size(459, 36);
             this.cmbTiposHab.TabIndex = 58;
@@ -136,7 +136,7 @@
             this.siticoneButton1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.siticoneButton1.ForeColor = System.Drawing.Color.White;
             this.siticoneButton1.Location = new System.Drawing.Point(868, 0);
-            this.siticoneButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.siticoneButton1.Margin = new System.Windows.Forms.Padding(4);
             this.siticoneButton1.Name = "siticoneButton1";
             this.siticoneButton1.Size = new System.Drawing.Size(240, 74);
             this.siticoneButton1.TabIndex = 0;
@@ -147,7 +147,7 @@
             this.siticonePanel1.Controls.Add(this.siticoneButton1);
             this.siticonePanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.siticonePanel1.Location = new System.Drawing.Point(0, 577);
-            this.siticonePanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.siticonePanel1.Margin = new System.Windows.Forms.Padding(4);
             this.siticonePanel1.Name = "siticonePanel1";
             this.siticonePanel1.Size = new System.Drawing.Size(1108, 74);
             this.siticonePanel1.TabIndex = 47;
@@ -159,10 +159,11 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1108, 74);
             this.panel1.TabIndex = 46;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label2
             // 
@@ -412,7 +413,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.siticonePanel1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UsCtrlHabit";
             this.Size = new System.Drawing.Size(1108, 651);
             this.Load += new System.EventHandler(this.UsCtrlHabit_Load);

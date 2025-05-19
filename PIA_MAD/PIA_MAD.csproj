@@ -118,6 +118,18 @@
     <Compile Include="Forms\UsCtrlHoteles.Designer.cs">
       <DependentUpon>UsCtrlHoteles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UsCttrlChecks.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UsCttrlChecks.Designer.cs">
+      <DependentUpon>UsCttrlChecks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UsCtrlServicios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UsCtrlServicios.Designer.cs">
+      <DependentUpon>UsCtrlServicios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Form1.resx">
@@ -144,6 +156,9 @@
     <EmbeddedResource Include="Forms\UsCtrlReservaciones.resx">
       <DependentUpon>UsCtrlReservaciones.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsCtrlServicios.resx">
+      <DependentUpon>UsCtrlServicios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UsCtrlTipoHabit.resx">
       <DependentUpon>UsCtrlTipoHabit.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UsCtrlHoteles.resx">
       <DependentUpon>UsCtrlHoteles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsCttrlChecks.resx">
+      <DependentUpon>UsCttrlChecks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

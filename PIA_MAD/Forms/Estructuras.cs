@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace PIA_MAD.Forms
 {
-    internal class Estructuras
+    public class Estructuras
     {
+            public class HabitacionSeleccionada
+            {
+                public int IdHotel { get; set; }
+                public int NumeroHabitacion { get; set; }
+                public int IdTipo { get; set; }
+                public int CantHuespedes { get; set; }
+                public decimal PrecioUnitario { get; set; } // Precio en el momento de la reservación
+            }
         public static class SesionUsuario
         {
             public static int IdUsuario { get; set; }

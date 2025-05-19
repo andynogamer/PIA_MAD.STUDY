@@ -26,8 +26,7 @@ namespace PIA_MAD
 
         private void button2_Click(object sender, EventArgs e)
         {
-
-
+            
             /// hay que cambiar el registro de insertar usuario.
             /// hay que hacer que dependiendo el usuario vaya a una pantalla y deshabilite lo que no puede hacer.
             /// 
@@ -46,6 +45,12 @@ namespace PIA_MAD
             {
                 MessageBox.Show("Correo o contraseña incorrectos.");
             }
+
+        }
+
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

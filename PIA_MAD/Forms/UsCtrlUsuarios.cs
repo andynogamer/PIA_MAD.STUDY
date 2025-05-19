@@ -59,7 +59,7 @@ namespace PIA_MAD.Forms
             EnlaceDB enlace = new EnlaceDB();
             bool exito = enlace.RegistrarUsuario(siticoneTextBox8.Text, ApPaternotxt.Text, ApMaternotxt.Text, siticoneTextBox2.Text,
                 siticoneTextBox4.Text, siticoneDateTimePicker1.Value, siticoneTextBox6.Text, siticoneTextBox5.Text,
-                siticoneTextBox7.Text,Estructuras.SesionUsuario.TipoUsu);
+                siticoneTextBox7.Text,Estructuras.SesionUsuario.IdUsuario);
 
             if (exito)
             {

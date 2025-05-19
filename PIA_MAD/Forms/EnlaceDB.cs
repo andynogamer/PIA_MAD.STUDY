@@ -24,6 +24,7 @@ using System.Configuration;
 using System.Windows.Forms;
 using PIA_MAD.Forms;
 using Siticone.Desktop.UI.WinForms;
+using static PIA_MAD.Forms.Estructuras;
 
 
 /*
@@ -836,6 +837,362 @@ namespace WindowsFormsApplication1
             }
 
             return tabla;
+        }
+
+        public DataTable ObtenerHabitacionesLibres(int idHotel,DateTime fecha_ini, DateTime fecha_fin)
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("ObtenerHabitacionesDisponiblesPorFecha", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdHotel",idHotel);
+                comando.Parameters.AddWithValue("@FechaIni", fecha_ini);
+                comando.Parameters.AddWithValue("@FechaFin", fecha_fin);
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener hoteles: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+
+        public string RegistrarReservacion(int idCliente, DateTime fechaIni, DateTime fechaFin, decimal pagoRes, List<HabitacionSeleccionada> habitaciones)
+        {
+            try
+            {
+                conectar();
+
+                SqlCommand comando = new SqlCommand("RegistrarReservacionConMultiplesHabitaciones", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdCliente", idCliente);
+                comando.Parameters.AddWithValue("@FechaIni", fechaIni);
+                comando.Parameters.AddWithValue("@FechaFin", fechaFin);
+                comando.Parameters.AddWithValue("@PagoRes", pagoRes);
+                comando.Parameters.AddWithValue("@IdUsuario", Estructuras.SesionUsuario.IdUsuario);
+
+                // Crear DataTable que coincida con HabitacionReservadaTVP
+                DataTable tablaHabitaciones = new DataTable();
+                tablaHabitaciones.Columns.Add("IdHotel", typeof(int));
+                tablaHabitaciones.Columns.Add("Numero_Habitacion", typeof(int));
+                tablaHabitaciones.Columns.Add("CantHuespedes", typeof(int));
+                tablaHabitaciones.Columns.Add("IdTipo", typeof(int));
+                tablaHabitaciones.Columns.Add("PrecioUnitario", typeof(decimal));
+
+                // Llenar DataTable con habitaciones seleccionadas
+                foreach (var h in habitaciones)
+                {
+                    tablaHabitaciones.Rows.Add(h.IdHotel, h.NumeroHabitacion, h.CantHuespedes, h.IdTipo, h.PrecioUnitario);
+                }
+
+                // Pasar DataTable como parámetro de tipo tabla (`TVP`)
+                SqlParameter paramTVP = comando.Parameters.AddWithValue("@Habitaciones", tablaHabitaciones);
+                paramTVP.SqlDbType = SqlDbType.Structured;
+                paramTVP.TypeName = "dbo.HabitacionReservadaTVP"; // Asegúrate de que el nombre coincida en SQL Server
+
+                // **Corrección aquí: Definir parámetro de salida**
+                SqlParameter paramIdReservacion = new SqlParameter("@CodigoReservacion", SqlDbType.UniqueIdentifier);
+                paramIdReservacion.Direction = ParameterDirection.Output;
+                comando.Parameters.Add(paramIdReservacion);
+
+                comando.ExecuteNonQuery();
+
+                return paramIdReservacion.Value.ToString(); // Devuelve el GUID correctamente
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return null;
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
+
+        public int GuardarFactura(Guid idReservacion, decimal totalHospedaje, decimal totalServicios, decimal totalDescuentos, decimal totalFinal)
+        {
+            int idFactura = 0;
+
+            try
+            {
+                conectar();
+
+                using (SqlCommand comando = new SqlCommand("GenerarFactura", _conexion))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+
+                    comando.Parameters.AddWithValue("@IdReservacion", idReservacion);
+                    comando.Parameters.AddWithValue("@TotalHospedaje", totalHospedaje);
+                    comando.Parameters.AddWithValue("@TotalServicios", totalServicios);
+                    comando.Parameters.AddWithValue("@TotalDescuentos", totalDescuentos);
+                    //comando.Parameters.AddWithValue("@TotalFinal", totalFinal);
+
+                    idFactura = Convert.ToInt32(comando.ExecuteScalar());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar la factura: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return idFactura;
+        }
+
+
+
+
+        public int HacerReservacion(int idCliente, int idHotel, DateTime fechaIni, DateTime fechaFin)
+        {
+            int idReservacion = -1;
+
+            try
+            {
+                conectar();
+
+                SqlCommand cmd = new SqlCommand("HacerReservacion", _conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IdCliente", idCliente);
+                //cmd.Parameters.AddWithValue("@IdHotel", idHotel);
+                cmd.Parameters.AddWithValue("@FechaIni", fechaIni.Date);
+                cmd.Parameters.AddWithValue("@FechaFin", fechaFin.Date);
+
+                SqlParameter outputParam = new SqlParameter("@IdReservacion", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(outputParam);
+
+                cmd.ExecuteNonQuery();
+                idReservacion = Convert.ToInt32(outputParam.Value);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al hacer la reservación: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return idReservacion;
+        }
+
+        public void InsertarHabitacionesReservadas(int idReservacion, List<Estructuras.HabitacionSeleccionada> habitaciones)
+        {
+            try
+            {
+                conectar();
+
+                foreach (var h in habitaciones)
+                {
+                    SqlCommand cmd = new SqlCommand("InsertarHabitacionReservada", _conexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdReservacion", idReservacion);
+                    cmd.Parameters.AddWithValue("@IdHotel", h.IdHotel);
+                    cmd.Parameters.AddWithValue("@NumeroHabitacion", h.NumeroHabitacion);
+                    cmd.Parameters.AddWithValue("@CantHuespedes", h.CantHuespedes);
+                    cmd.Parameters.AddWithValue("@IdTipo", h.IdTipo);
+                    cmd.Parameters.AddWithValue("@PrecioUnitario", h.PrecioUnitario);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al insertar habitaciones reservadas: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
+        public DataTable ObtenerReservacionesFiltradas(string codigoReservacion)
+        {
+            DataTable tablaResultados = new DataTable();
+
+            try
+            {
+                conectar(); // Asegurar conexión antes de ejecutar el procedimiento
+
+                using (SqlCommand comando = new SqlCommand("BuscarReservacionesPorCodigo", _conexion))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@CodigoReservacion", codigoReservacion);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
+                    {
+                        adapter.Fill(tablaResultados);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar reservaciones: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                desconectar(); // Asegurar que la conexión se cierre correctamente
+            }
+
+            return tablaResultados;
+        }
+
+        public DataTable ObtenerHabitacionesReservadas(Guid idReservacion)
+        {
+            DataTable tablaResultados = new DataTable();
+
+            try
+            {
+                conectar();
+
+                using (SqlCommand comando = new SqlCommand("ObtenerHabitacionesPorReservacion", _conexion))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@IdReservacion", idReservacion);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
+                    {
+                        adapter.Fill(tablaResultados);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener habitaciones reservadas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tablaResultados;
+        }
+        /************************************* Servicios *********************************/
+        public bool InsertarServicios(int idHotel, string nombre, decimal cost)
+        {
+            bool exito = false;
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("InsertarServicio", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@Nombre", nombre);
+                comando.Parameters.AddWithValue("@Cost", cost);
+                comando.Parameters.AddWithValue("@IdHotel", idHotel);
+              
+              
+                int rows = comando.ExecuteNonQuery();
+                // si devuelve –1 o >0 → éxito
+                exito = (rows != 0);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al insertar Servicio " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return exito;
+        }
+        public bool InsertarServicioReservacion(Guid idReservacion, int idServicio, int cantidadUtilizada = 1)
+        {
+            bool exito = false;
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("InsertarServicioReservacion", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                comando.Parameters.AddWithValue("@IdReservacion", idReservacion);
+                comando.Parameters.AddWithValue("@IdServicio", idServicio);
+                comando.Parameters.AddWithValue("@CantidadUtilizada", cantidadUtilizada);
+
+                int rows = comando.ExecuteNonQuery();
+                exito = (rows != 0); // éxito si afectó filas
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al insertar Servicio en Reservación: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return exito;
+        }
+
+        public DataTable ObtenerServiciosPorHotel(int idHotel)
+        {
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("ObtenerServiciosPorHotel", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdHotel", idHotel);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(comando);
+                adapter.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener servicios del hotel: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+        public DataTable ObtenerServiciosReservados(Guid idReservacion)
+        {
+            DataTable tablaResultados = new DataTable();
+
+            try
+            {
+                conectar();
+
+                using (SqlCommand comando = new SqlCommand("ObtenerServiciosPorReservacion", _conexion))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@IdReservacion", idReservacion);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
+                    {
+                        adapter.Fill(tablaResultados);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener servicios reservados: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tablaResultados;
         }
 
 
