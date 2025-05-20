@@ -248,7 +248,7 @@ namespace PIA_MAD.Forms
 
                     if (dt.Rows.Count > 0)
                     {
-                         DataRow fila = dt.Rows[0];
+                        DataRow fila = dt.Rows[0];
 
                         Hotel.Text = fila["Nombre_Hotel"].ToString();
                         ZonaTuris.Text = fila["Zona_turistica"].ToString();
@@ -269,7 +269,18 @@ namespace PIA_MAD.Forms
                         Calle.Text = fila["Calle"].ToString();
                         NumExterior.Text = fila["NumeroExterior"].ToString();
                         NumInterior.Text = fila["NumeroInterior"].ToString();
+                        Pisos.Text = fila["Pisos"].ToString();
+                        RegistroUsu.Text = "Registrado por: " + fila["Nombre_Usuario_Registro"].ToString();
+                        label9.Text = "Fecha de Actualizacion: " + fila["Fecha_act"].ToString();
                         // falta lo de agregar numero de pisos
+                    }
+                    DataTable dtt = enlace.ObtenerCantidadHabitaciones(idHotel);
+                    if (dtt.Rows.Count > 0)
+                    {
+                        DataRow fila = dtt.Rows[0];
+
+                        Tipos_habitacion.Text = "Tipos de habitacion: " + fila["Total_Tipos_Habitacion"].ToString();
+                        Cantidad_Habitaciones.Text = "Cantidad de habitaciones: " + fila["Total_Habitaciones"].ToString();
                     }
                 }
                 else
@@ -306,6 +317,11 @@ namespace PIA_MAD.Forms
         }
 
         private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RegistroUsu_Click(object sender, EventArgs e)
         {
 
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Siticone.Desktop.UI.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,8 @@ namespace PIA_MAD.Forms
 {
     public partial class UsCttrlChecks : UserControl
     {
+        private Guid reservacionSeleccionada;
+
         public UsCttrlChecks()
         {
             InitializeComponent();
@@ -127,7 +130,7 @@ namespace PIA_MAD.Forms
 
             // Instancia de EnlaceDB para buscar las reservaciones
             EnlaceDB enlace = new EnlaceDB();
-            DataTable resultados = enlace.ObtenerReservacionesFiltradas(codigoBuscado);
+            DataTable resultados = enlace.ObtenerReservacionesFiltradasE(codigoBuscado);
 
             // Mostrar los resultados en el DataGridView
             dgvReservaciones.DataSource = resultados;
@@ -213,7 +216,23 @@ namespace PIA_MAD.Forms
 
             if (idFactura > 0)
             {
+
                 MessageBox.Show($"Factura generada correctamente con ID {idFactura}.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Cambiar estado de la reservación a "Efectuada"
+                bool actualizado = enlace.ActualizarEstadoReservacion(idReservacion.ToString(), "Efectuada");
+
+                if (actualizado)
+                {
+                    MessageBox.Show("Estado de la reservación actualizado a 'Efectuada'.", "Estado actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    enlace.GenerarFacturaArchivo(idReservacion);
+
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo actualizar el estado de la reservación.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
             }
         }
 
@@ -246,6 +265,81 @@ namespace PIA_MAD.Forms
         }
 
         private void dgvHabitacionesReservadas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void siticoneDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < dgvReservacionesIN.Rows.Count)
+            {
+                DataGridViewRow fila = dgvReservacionesIN.Rows[e.RowIndex];
+
+                if (fila.Cells["IdReservacion"].Value != null)
+                {
+                    string idReservacion = fila.Cells["IdReservacion"].Value.ToString();
+
+                    MessageBox.Show($"Estás seleccionando esta reservación:\n{idReservacion}", "Reservación seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Si reservacionSeleccionada es tipo Guid
+                    reservacionSeleccionada = Guid.Parse(idReservacion);
+                }
+            }
+        }
+
+
+        private void siticoneTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            string codigoBuscado = txtCodigoReservacionIN.Text.Trim();
+
+            // Si el usuario borra el texto, limpiamos el DataGridView
+            if (string.IsNullOrEmpty(codigoBuscado))
+            {
+                dgvReservaciones.DataSource = null;
+                return;
+            }
+
+            // Instancia de EnlaceDB para buscar las reservaciones
+            EnlaceDB enlace = new EnlaceDB();
+            DataTable resultados = enlace.ObtenerReservacionesFiltradas2(codigoBuscado);
+
+            // Mostrar los resultados en el DataGridView
+            dgvReservacionesIN.DataSource = resultados;
+        }
+
+        private void CheckIn_Click(object sender, EventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(reservacionSeleccionada.ToString()))
+            {
+                MessageBox.Show("Por favor selecciona una reservación primero.");
+                return;
+            }
+
+            // Obtener la fila seleccionada
+            DataGridViewRow fila = dgvReservacionesIN.CurrentRow;
+            DateTime fechaInicio = Convert.ToDateTime(fila.Cells["Fecha_Ini"].Value);
+            DateTime hoy = DateTime.Today;
+
+            string nuevoEstado = hoy > fechaInicio ? "CanceladaF" : "Estadia";
+
+            EnlaceDB enlace = new EnlaceDB();
+            bool actualizado = enlace.ActualizarEstadoReservacion(reservacionSeleccionada.ToString(), nuevoEstado);
+
+            if (actualizado)
+            {
+                MessageBox.Show($"Reservación actualizada a estado: {nuevoEstado}");
+                // Opcional: recargar el DataGridView si quieres actualizar la vista
+                // dgvReservaciones.DataSource = enlace.ObtenerReservacionesFiltradas2(...);
+            }
+            else
+            {
+                MessageBox.Show("Error al actualizar la reservación.");
+            }
+
+        }
+
+        private void siticoneHtmlLabel3_Click(object sender, EventArgs e)
         {
 
         }

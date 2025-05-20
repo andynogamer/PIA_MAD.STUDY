@@ -91,7 +91,7 @@ namespace PIA_MAD.Forms
 
             // Instancia de EnlaceDB para buscar las reservaciones
             EnlaceDB enlace = new EnlaceDB();
-            DataTable resultados = enlace.ObtenerReservacionesFiltradas(codigoBuscado);
+            DataTable resultados = enlace.ObtenerReservacionesFiltradasE(codigoBuscado);
 
             // Mostrar los resultados en el DataGridView
             dgvReservaciones.DataSource = resultados;

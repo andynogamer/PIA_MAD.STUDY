@@ -5,9 +5,11 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1;
+using static PIA_MAD.Forms.Estructuras;
 
 namespace PIA_MAD.Forms
 {
@@ -17,8 +19,26 @@ namespace PIA_MAD.Forms
         public UsCtrlUsuarios()
         {
             InitializeComponent();
+            int usuType = SesionUsuario.TipoUsu;
+            if (usuType == 2)
+            {
+                siticoneButton2.Enabled = false;
+            }
+
+
         }
 
+        public static bool ValidarContrasena(string password)
+        {
+            if (string.IsNullOrEmpty(password) || password.Length < 8)
+                return false;
+
+            bool tieneMayuscula = Regex.IsMatch(password, "[A-Z]");
+            bool tieneMinuscula = Regex.IsMatch(password, "[a-z]");
+            bool tieneEspecial = Regex.IsMatch(password, @"[!""#$%&/=\'?¡¿:;,.\-_+\*\{\}\[\]]");
+
+            return tieneMayuscula && tieneMinuscula && tieneEspecial;
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -39,7 +59,7 @@ namespace PIA_MAD.Forms
             siticoneDataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             // Opcional: Si quieres dar nombres personalizados a las columnas
-            siticoneDataGridView1.Columns["IdUsuario"].HeaderText = "ID de Usuario";
+            /*siticoneDataGridView1.Columns["IdUsuario"].HeaderText = "ID de Usuario";
             siticoneDataGridView1.Columns["Nombre_Usu"].HeaderText = "Nombre del Usuario";
             siticoneDataGridView1.Columns["ApPaterno"].HeaderText = "Apellido Paterno";
             siticoneDataGridView1.Columns["ApMaterno"].HeaderText = "Apellido Materno";
@@ -49,7 +69,7 @@ namespace PIA_MAD.Forms
             siticoneDataGridView1.Columns["Tel_cel"].HeaderText = "Teléfono Celular";
             siticoneDataGridView1.Columns["Estatus"].HeaderText = "Estatus";
             siticoneDataGridView1.Columns["FechRegis"].HeaderText = "Fecha de Registro";
-            siticoneDataGridView1.Columns["Fech_act"].HeaderText = "Fecha de Actualizacion";
+            siticoneDataGridView1.Columns["Fech_act"].HeaderText = "Fecha de Actualizacion"; */
         }
 
 
@@ -57,6 +77,12 @@ namespace PIA_MAD.Forms
         {
             // validar que los campos no esten vacios...
             EnlaceDB enlace = new EnlaceDB();
+            if (!ValidarContrasena(siticoneTextBox7.Text))
+            {
+                MessageBox.Show("Todas las contraseñas deben de tener al menos 8 caracteres y debe de\r\nincluir una mayúscula, una minúscula y un caracter especial.\r\nCaracter especial es cualquier símbolo generado por el teclado que no sea\r\nletra ni número, por ejemplo: (¡”#$%&/=’?¡¿:;,.-_+*{][})", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             bool exito = enlace.RegistrarUsuario(siticoneTextBox8.Text, ApPaternotxt.Text, ApMaternotxt.Text, siticoneTextBox2.Text,
                 siticoneTextBox4.Text, siticoneDateTimePicker1.Value, siticoneTextBox6.Text, siticoneTextBox5.Text,
                 siticoneTextBox7.Text,Estructuras.SesionUsuario.IdUsuario);
@@ -86,7 +112,7 @@ namespace PIA_MAD.Forms
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow fila = siticoneDataGridView1.Rows[e.RowIndex];
-                idSeleccionado = Convert.ToInt32(fila.Cells["IdUsuario"].Value);
+                idSeleccionado = Convert.ToInt32(fila.Cells["ID de Usuario"].Value);
             }
         }
 
@@ -121,6 +147,10 @@ namespace PIA_MAD.Forms
             }
         }
 
+        private void siticoneTextBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

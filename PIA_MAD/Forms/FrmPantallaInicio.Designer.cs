@@ -35,6 +35,8 @@
             this.siticoneControlBox2 = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.siticoneControlBox1 = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.siticoneButton12 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.siticoneButton11 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticoneButton10 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticoneButton9 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticoneButton8 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -46,7 +48,6 @@
             this.siticoneButton2 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.siticoneButton11 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticonePanel1.SuspendLayout();
             this.siticonePanel2.SuspendLayout();
             this.SuspendLayout();
@@ -102,6 +103,7 @@
             // 
             // siticonePanel2
             // 
+            this.siticonePanel2.Controls.Add(this.siticoneButton12);
             this.siticonePanel2.Controls.Add(this.siticoneButton11);
             this.siticonePanel2.Controls.Add(this.siticoneButton10);
             this.siticonePanel2.Controls.Add(this.siticoneButton9);
@@ -117,8 +119,42 @@
             this.siticonePanel2.Location = new System.Drawing.Point(0, 52);
             this.siticonePanel2.Margin = new System.Windows.Forms.Padding(4);
             this.siticonePanel2.Name = "siticonePanel2";
-            this.siticonePanel2.Size = new System.Drawing.Size(267, 791);
+            this.siticonePanel2.Size = new System.Drawing.Size(267, 907);
             this.siticonePanel2.TabIndex = 1;
+            // 
+            // siticoneButton12
+            // 
+            this.siticoneButton12.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton12.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton12.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.siticoneButton12.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.siticoneButton12.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.siticoneButton12.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.siticoneButton12.ForeColor = System.Drawing.Color.White;
+            this.siticoneButton12.Location = new System.Drawing.Point(0, 800);
+            this.siticoneButton12.Margin = new System.Windows.Forms.Padding(4);
+            this.siticoneButton12.Name = "siticoneButton12";
+            this.siticoneButton12.Size = new System.Drawing.Size(267, 70);
+            this.siticoneButton12.TabIndex = 11;
+            this.siticoneButton12.Text = "Cancelaciones";
+            this.siticoneButton12.Click += new System.EventHandler(this.siticoneButton12_Click);
+            // 
+            // siticoneButton11
+            // 
+            this.siticoneButton11.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton11.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton11.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.siticoneButton11.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.siticoneButton11.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.siticoneButton11.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.siticoneButton11.ForeColor = System.Drawing.Color.White;
+            this.siticoneButton11.Location = new System.Drawing.Point(0, 727);
+            this.siticoneButton11.Margin = new System.Windows.Forms.Padding(4);
+            this.siticoneButton11.Name = "siticoneButton11";
+            this.siticoneButton11.Size = new System.Drawing.Size(267, 70);
+            this.siticoneButton11.TabIndex = 10;
+            this.siticoneButton11.Text = "Servicios Adicionales";
+            this.siticoneButton11.Click += new System.EventHandler(this.siticoneButton11_Click);
             // 
             // siticoneButton10
             // 
@@ -296,33 +332,16 @@
             this.siticonePanel3.Location = new System.Drawing.Point(267, 52);
             this.siticonePanel3.Margin = new System.Windows.Forms.Padding(4);
             this.siticonePanel3.Name = "siticonePanel3";
-            this.siticonePanel3.Size = new System.Drawing.Size(1108, 791);
+            this.siticonePanel3.Size = new System.Drawing.Size(1108, 907);
             this.siticonePanel3.TabIndex = 2;
             this.siticonePanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.siticonePanel3_Paint);
-            // 
-            // siticoneButton11
-            // 
-            this.siticoneButton11.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton11.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton11.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.siticoneButton11.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneButton11.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.siticoneButton11.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.siticoneButton11.ForeColor = System.Drawing.Color.White;
-            this.siticoneButton11.Location = new System.Drawing.Point(0, 727);
-            this.siticoneButton11.Margin = new System.Windows.Forms.Padding(4);
-            this.siticoneButton11.Name = "siticoneButton11";
-            this.siticoneButton11.Size = new System.Drawing.Size(267, 70);
-            this.siticoneButton11.TabIndex = 10;
-            this.siticoneButton11.Text = "Servicios Adicionales";
-            this.siticoneButton11.Click += new System.EventHandler(this.siticoneButton11_Click);
             // 
             // FrmPantallaInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1375, 843);
+            this.ClientSize = new System.Drawing.Size(1375, 959);
             this.Controls.Add(this.siticonePanel3);
             this.Controls.Add(this.siticonePanel2);
             this.Controls.Add(this.siticonePanel1);
@@ -357,5 +376,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton9;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton10;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton11;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton12;
     }
 }

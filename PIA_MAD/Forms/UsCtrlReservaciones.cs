@@ -120,7 +120,7 @@ namespace PIA_MAD.Forms
         {
             EnlaceDB enlace = new EnlaceDB();
             int idCiudadSeleccionada = Convert.ToInt32(((DataRowView)CiudadesDisponibles.SelectedItem)["IdCiudad"]);
-            DataTable ciudades2 = enlace.ObtenerHotelesPorCiudad(idCiudadSeleccionada);
+            DataTable ciudades2 = enlace.ObtenerHotelesPorCiudad2(idCiudadSeleccionada);
             HotelesCiudad.DataSource = ciudades2;
             HotelesCiudad.DisplayMember = "Nombre_Hotel";
             HotelesCiudad.ValueMember = "IdHotel";
@@ -313,10 +313,6 @@ namespace PIA_MAD.Forms
             // Ejecutar la reserva
             EnlaceDB enlace = new EnlaceDB();
             string idReservacion = enlace.RegistrarReservacion(idClienteSeleccionado, fechaIni, fechaFin, pagoRes, habitacionesSeleccionadas);
-
-
-
-
             if (!string.IsNullOrEmpty(idReservacion))
             {
                 // Mostrar el MessageBox con la opción de copiar el código
@@ -342,6 +338,16 @@ namespace PIA_MAD.Forms
         }
 
         private void siticoneNumericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void siticoneButton8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void siticoneButton1_Click(object sender, EventArgs e)
         {
 
         }

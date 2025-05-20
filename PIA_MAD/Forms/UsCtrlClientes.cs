@@ -194,5 +194,10 @@ namespace PIA_MAD.Forms
                 CargarCodigoPostal(idColonia);
             }
         }
+
+        private void txtApPaterno_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

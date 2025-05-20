@@ -34,14 +34,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.label1 = new System.Windows.Forms.Label();
             this.siticoneButton2 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.Costo = new Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.ServicioNombre = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbHoteles = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtCodigoReservacion = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.ServiciosHotel = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
@@ -49,23 +47,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.dgvReservaciones = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Costo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ServiciosHotel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Cantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservaciones)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(24, 18);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(288, 32);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Servicios Adicionales";
             // 
             // siticoneButton2
             // 
@@ -151,18 +139,6 @@
             this.cmbHoteles.TabIndex = 67;
             this.cmbHoteles.SelectedIndexChanged += new System.EventHandler(this.cmbHoteles_SelectedIndexChanged);
             // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(39, 86);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 32);
-            this.label2.TabIndex = 68;
-            this.label2.Text = "HOTELES";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -209,7 +185,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.ServiciosHotel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.ServiciosHotel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ServiciosHotel.ColumnHeadersHeight = 4;
+            this.ServiciosHotel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -225,7 +202,7 @@
             this.ServiciosHotel.RowHeadersVisible = false;
             this.ServiciosHotel.RowHeadersWidth = 51;
             this.ServiciosHotel.RowTemplate.Height = 24;
-            this.ServiciosHotel.Size = new System.Drawing.Size(583, 175);
+            this.ServiciosHotel.Size = new System.Drawing.Size(504, 175);
             this.ServiciosHotel.TabIndex = 71;
             this.ServiciosHotel.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.ServiciosHotel.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -238,7 +215,7 @@
             this.ServiciosHotel.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.ServiciosHotel.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ServiciosHotel.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.ServiciosHotel.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ServiciosHotel.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.ServiciosHotel.ThemeStyle.HeaderStyle.Height = 4;
             this.ServiciosHotel.ThemeStyle.ReadOnly = true;
             this.ServiciosHotel.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
@@ -301,7 +278,8 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvReservaciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvReservaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReservaciones.ColumnHeadersHeight = 4;
+            this.dgvReservaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -317,7 +295,7 @@
             this.dgvReservaciones.RowHeadersVisible = false;
             this.dgvReservaciones.RowHeadersWidth = 51;
             this.dgvReservaciones.RowTemplate.Height = 24;
-            this.dgvReservaciones.Size = new System.Drawing.Size(303, 45);
+            this.dgvReservaciones.Size = new System.Drawing.Size(823, 119);
             this.dgvReservaciones.TabIndex = 76;
             this.dgvReservaciones.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvReservaciones.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -330,7 +308,7 @@
             this.dgvReservaciones.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvReservaciones.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvReservaciones.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvReservaciones.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReservaciones.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvReservaciones.ThemeStyle.HeaderStyle.Height = 4;
             this.dgvReservaciones.ThemeStyle.ReadOnly = true;
             this.dgvReservaciones.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
@@ -342,10 +320,34 @@
             this.dgvReservaciones.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dgvReservaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservaciones_CellContentClick);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(40, 95);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 27);
+            this.label5.TabIndex = 77;
+            this.label5.Text = "Hoteles";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(40, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(251, 27);
+            this.label1.TabIndex = 78;
+            this.label1.Text = "Servicios Adicionales";
+            // 
             // UsCtrlServicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.dgvReservaciones);
             this.Controls.Add(this.siticoneButton1);
             this.Controls.Add(this.label4);
@@ -353,14 +355,12 @@
             this.Controls.Add(this.ServiciosHotel);
             this.Controls.Add(this.txtCodigoReservacion);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbHoteles);
             this.Controls.Add(this.siticoneButton2);
             this.Controls.Add(this.Costo);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.ServicioNombre);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.label1);
             this.Name = "UsCtrlServicios";
             this.Size = new System.Drawing.Size(1404, 700);
             this.Load += new System.EventHandler(this.UsCtrlServicios_Load);
@@ -374,15 +374,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton2;
         private Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown Costo;
         private System.Windows.Forms.Label label9;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox ServicioNombre;
         private System.Windows.Forms.Label label10;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox cmbHoteles;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtCodigoReservacion;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView ServiciosHotel;
@@ -390,5 +387,7 @@
         private System.Windows.Forms.Label label4;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton1;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvReservaciones;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label1;
     }
 }

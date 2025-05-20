@@ -13,18 +13,21 @@ LOS MÉTODOS QUE SE DEFINEN EN ESTA CLASE SON EJEMPLOS, PARA QUE SE BASEN Y USTE
 Y DEFINAN Y PROGRAMEN TODOS LOS MÉTODOS QUE SEAN NECESARIOS PARA SU PROYECTO.
 
 */
+using PIA_MAD.Forms;
+using Siticone.Desktop.UI.WinForms;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
 using System.Windows.Forms;
-using PIA_MAD.Forms;
-using Siticone.Desktop.UI.WinForms;
 using static PIA_MAD.Forms.Estructuras;
+using static TheArtOfDev.HtmlRenderer.Adapters.RGraphicsPath;
+
 
 
 /*
@@ -34,6 +37,7 @@ namespace WindowsFormsApplication1
 {
     public class EnlaceDB
     {
+
         static private string _aux { set; get; }
         static private SqlConnection _conexion;
         static private SqlDataAdapter _adaptador = new SqlDataAdapter();
@@ -171,7 +175,7 @@ namespace WindowsFormsApplication1
             try
             {
                 conectar();
-                SqlCommand comando = new SqlCommand("MostrarUsu", _conexion);
+                SqlCommand comando = new SqlCommand("MostrarUsuariosVista", _conexion);
                 comando.CommandType = CommandType.StoredProcedure;
 
                 SqlDataAdapter adaptador = new SqlDataAdapter(comando);
@@ -265,6 +269,183 @@ namespace WindowsFormsApplication1
 
             return tabla;
         }
+        public DataTable ObtenerReporteCliente(string Dato, int año)
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("ReporteCliente", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@busqueda", Dato);
+                comando.Parameters.AddWithValue("@anio", año);
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener estados: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+        public DataTable ObtenerCiudadesPorPais(int idPais)
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar(); // Asume que ya tienes este método en tu clase
+
+                SqlCommand comando = new SqlCommand("ObtenerCiudadesPorPais", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdPais", idPais);
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener ciudades: " + ex.Message);
+            }
+            finally
+            {
+                desconectar(); // Asume que también tienes este método
+            }
+
+            return tabla;
+        }
+
+        public DataTable ObtenerReporteVentas(int Pais,int ciudad, int año , int idHotel)
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("sp_ReporteIngresosHotel", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdPais", Pais);
+                comando.Parameters.AddWithValue("@IdCiudad", ciudad);
+                comando.Parameters.AddWithValue("@anio", año);
+                comando.Parameters.AddWithValue("@IdHotel", idHotel);
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener estados: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+        public DataTable ObtenerReporteVentas2(int Pais, int ciudad, int año)
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("sp_ReporteIngresosHotel", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdPais", Pais);
+                comando.Parameters.AddWithValue("@IdCiudad", ciudad);
+                comando.Parameters.AddWithValue("@anio", año);
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener estados: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+        public DataTable ObtenerReporteOcupacionHotel(int pais, int ciudad, int anio, int? idHotel = null)
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("Reporte_Ocupacion_Hotel", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                comando.Parameters.AddWithValue("@IdPais", pais);
+                comando.Parameters.AddWithValue("@IdCiudad", ciudad);
+                comando.Parameters.AddWithValue("@Anio", anio);
+
+                // Para parámetro opcional, si no se envía, mandamos DBNull.Value
+                if (idHotel.HasValue)
+                    comando.Parameters.AddWithValue("@IdHotel", idHotel.Value);
+                else
+                    comando.Parameters.AddWithValue("@IdHotel", DBNull.Value);
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener reporte de ocupación: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+
+        public DataTable ObtenerResumenOcupacionHotel(int pais, int ciudad, int anio, int? idHotel = null)
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("Resumen_Ocupacion_Hotel", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                comando.Parameters.AddWithValue("@IdPais", pais);
+                comando.Parameters.AddWithValue("@IdCiudad", ciudad);
+                comando.Parameters.AddWithValue("@Anio", anio);
+
+                if (idHotel.HasValue)
+                    comando.Parameters.AddWithValue("@IdHotel", idHotel.Value);
+                else
+                    comando.Parameters.AddWithValue("@IdHotel", DBNull.Value);
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener resumen de ocupación: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
 
         public DataTable ObtenerCiudades(int idEstado)
         {
@@ -318,6 +499,30 @@ namespace WindowsFormsApplication1
             return tabla;
         }
 
+        public void CambiarContrasena(FrmCambioContrasena frmCambioContrasena, string correo, string pass1)
+        {
+            try
+            {
+               
+                {
+                    conectar();
+
+                    SqlCommand cmd = new SqlCommand("sp_CambiarContrasena", _conexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Correo", correo);
+                    cmd.Parameters.AddWithValue("@NuevaPass", pass1);
+                   
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Contraseña actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    frmCambioContrasena.Close(); // Cierra la ventana modal
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al actualizar la contraseña: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public DataTable ObtenerColonias(int idMunicipio)
         {
             DataTable tabla = new DataTable();
@@ -547,6 +752,30 @@ namespace WindowsFormsApplication1
 
             return tabla;
         }
+        public DataTable ObtenerCantidadHabitaciones(int idHotel)
+        {
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("ObtenerResumenHabitacionesPorHotel", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdHotel", idHotel);
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener datos del hotel: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
 
 
         public bool ActualizarHotel(int idHotel, string nombreHotel, int idDireccion, string zonaTuristica, DateTime fechaIniOpe, int Pisos)
@@ -582,7 +811,7 @@ namespace WindowsFormsApplication1
         }
         /********************************** TIPO HABITACIONES ***********************/
         public bool InsertarTipoHabitacion(int cantPers, string caracteristicas,string nivel, int camas, string amenidades,
-                                   float precio, int idHotel, string tipoCamas)
+                                   decimal precio, int idHotel, string tipoCamas)
         {
             SqlCommand cmd = new SqlCommand("InsertarTipoHabitacion", _conexion);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -621,7 +850,7 @@ namespace WindowsFormsApplication1
             return tabla;
         }
         public bool ActualizarTipoHabitacion(int idTipo, int cantPers, string caracteristicas, string nivel,
-                                     int camas, string tipoCamas, float precio)
+                                     int camas, string tipoCamas, decimal precio)
         {
             using (SqlCommand cmd = new SqlCommand("ActualizarTipoHabitacion", _conexion))
             {
@@ -838,6 +1067,152 @@ namespace WindowsFormsApplication1
 
             return tabla;
         }
+        public DataTable ObtenerHotelesPorCiudad2(int idCiudad)
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("ObtenerHotelesPorCiudad2", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdCiudad", idCiudad);
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener hoteles: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+        public void GenerarFacturaArchivo(Guid idReservacion)
+        {
+            decimal totalDescuentos = 0;
+            decimal anticipo = 0;
+            //string File = "";
+            decimal iva = 0;
+            decimal subtotal = 0;
+            decimal totalConIVA =0;
+            try
+            {
+                conectar();
+
+                using (SqlCommand comando = new SqlCommand("GenerarDatosFactura", _conexion))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@IdReservacion", idReservacion);
+
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        // Primer resultado: datos generales
+                        string contenido = "";
+                        if (reader.Read())
+                        {
+                            string idFactura = reader["IdFactura"].ToString();
+                            string nombreHotel = reader["Nombre_Hotel"].ToString();
+                            string zona = reader["Zona_turistica"].ToString();
+                            string cliente = reader["NombreCliente"].ToString();
+                            string correo = reader["Correo"].ToString();
+                            string tel = reader["TelCel"].ToString();
+                            string fechaEmision = Convert.ToDateTime(reader["FechaFactura"]).ToString("yyyy-MM-dd");
+                            string fechaIni = Convert.ToDateTime(reader["Fecha_Ini"]).ToString("yyyy-MM-dd");
+                            string fechaFin = Convert.ToDateTime(reader["Fecha_Fin"]).ToString("yyyy-MM-dd");
+                            anticipo = Convert.ToDecimal(reader["Anticipo"]);
+                            decimal totalHospedaje = Convert.ToDecimal(reader["TotalHospedaje"]);
+                            decimal totalServicios = Convert.ToDecimal(reader["TotalServicios"]);
+                            totalDescuentos = Convert.ToDecimal(reader["TotalDescuentos"]);
+                            decimal totalFinal = Convert.ToDecimal(reader["TotalFinal"]);
+                            subtotal= totalHospedaje + totalServicios;
+                           iva= subtotal * 0.16m;
+                             totalConIVA = totalFinal + iva;
+
+                            contenido += $"Factura No.: {idFactura}\n{nombreHotel}\n{zona}\n\n";
+                            contenido += $"Fecha de emisión: {fechaEmision}\n";
+                            contenido += $"Código de reservación: {idReservacion}\n";
+                            contenido += $"Cliente: {cliente}\nTeléfono: {tel}\nCorreo: {correo}\n\n";
+                            contenido += "Cantidad  Descripción                         Precio Unitario     Total\n";
+                            contenido += "---------------------------------------------------------------------------\n";
+                        }
+
+                        // Segundo resultado: habitaciones reservadas
+                        if (reader.NextResult())
+                        {
+                            while (reader.Read())
+                            {
+                                int cantidad = Convert.ToInt32(reader["CantHuespedes"]);
+                                string nivel = reader["Nivel"].ToString();
+                                string tipoCama = reader["Tipo_Camas"].ToString();
+                                decimal precio = Convert.ToDecimal(reader["PrecioUnitario"]);
+                                decimal total = Convert.ToDecimal(reader["TotalHabitacion"]);
+
+                                contenido += $"{cantidad}         Hospedaje ({nivel} - {tipoCama})       ${precio}            ${total}\n";
+                            }
+                        }
+
+                        // Tercer resultado: servicios utilizados
+                        if (reader.NextResult())
+                        {
+                            while (reader.Read())
+                            {
+                                int cantidad = Convert.ToInt32(reader["CantidadUtilizada"]);
+                                string nombre = reader["Nombre"].ToString();
+                                decimal precio = Convert.ToDecimal(reader["Costo"]);
+                                 subtotal = Convert.ToDecimal(reader["Subtotal"]);
+
+                                contenido += $"{cantidad}         {nombre}                       ${precio}            ${subtotal}\n";
+                            }
+                        }
+
+                        // Cuarto resultado: descuentos
+                        if (reader.NextResult())
+                        {
+                            contenido += "\nDescuentos aplicados:\n";
+                            while (reader.Read())
+                            {
+                                string nombre = reader["NombreDescuento"].ToString();
+                                decimal valor = Convert.ToDecimal(reader["Valor"]);
+                                bool esPorcentaje = Convert.ToBoolean(reader["EsPorcentaje"]);
+                                string tipo = reader["TipoDescuento"].ToString();
+
+                                contenido += $"- {nombre} ({(esPorcentaje ? valor + "%" : "$" + valor)}) sobre {tipo}\n";
+                            }
+                        }
+
+                        // Totales
+                        contenido += "\n";
+                        contenido += $"Subtotal:                                   ${subtotal}\n";
+                        contenido += $"Descuentos:                                 -${totalDescuentos}\n";
+                        contenido += $"Anticipo:                                   -${anticipo}\n";
+                        contenido += $"IVA (16%):                                  ${iva}\n";
+                        contenido += $"Total a pagar:                              ${totalConIVA}\n";
+                        contenido += "\nGracias por su preferencia.\n";
+
+                        // Guardar archivo
+                        string ruta = $"Factura_{idReservacion}.txt";
+
+                        File.WriteAllText(ruta, contenido);
+
+                        MessageBox.Show($"Factura generada correctamente en el archivo:\n{ruta}", "Factura generada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar la factura: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
 
         public DataTable ObtenerHabitacionesLibres(int idHotel,DateTime fecha_ini, DateTime fecha_fin)
         {
@@ -1051,6 +1426,98 @@ namespace WindowsFormsApplication1
 
             return tablaResultados;
         }
+        public DataTable ObtenerReservacionesFiltradasE(string codigoReservacion)
+        {
+            DataTable tablaResultados = new DataTable();
+
+            try
+            {
+                conectar(); // Asegurar conexión antes de ejecutar el procedimiento
+
+                using (SqlCommand comando = new SqlCommand("BuscarReservacionesPorCodigoE", _conexion))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@CodigoReservacion", codigoReservacion);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
+                    {
+                        adapter.Fill(tablaResultados);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar reservaciones: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                desconectar(); // Asegurar que la conexión se cierre correctamente
+            }
+
+            return tablaResultados;
+        }
+        public DataTable ObtenerReservacionesFiltradas2(string codigoReservacion)
+        {
+            DataTable tablaResultados = new DataTable();
+
+            try
+            {
+                conectar(); // Asegurar conexión antes de ejecutar el procedimiento
+
+                using (SqlCommand comando = new SqlCommand("BuscarReservacionesPorCodigoC", _conexion))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@CodigoReservacion", codigoReservacion);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
+                    {
+                        adapter.Fill(tablaResultados);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar reservaciones: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                desconectar(); // Asegurar que la conexión se cierre correctamente
+            }
+
+            return tablaResultados;
+        }
+
+        public bool ActualizarEstadoReservacion(string idReservacion, string nuevoEstado)
+        {
+            bool exito = false;
+
+            try
+            {
+                conectar(); // Asegurar conexión antes de ejecutar el procedimiento
+
+                using (SqlCommand comando = new SqlCommand("ActualizarEstadoReservacion", _conexion))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+
+                    comando.Parameters.AddWithValue("@IdReservacion", Guid.Parse(idReservacion));
+                    comando.Parameters.AddWithValue("@NuevoEstado", nuevoEstado);
+
+                    int filasAfectadas = comando.ExecuteNonQuery();
+                    exito = filasAfectadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar estado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                desconectar(); // Cerrar conexión correctamente
+            }
+
+            return exito;
+        }
+
 
         public DataTable ObtenerHabitacionesReservadas(Guid idReservacion)
         {
@@ -1195,6 +1662,81 @@ namespace WindowsFormsApplication1
             return tablaResultados;
         }
 
+        /* ******************************************** Amenidades *****************************************************/
+
+        public DataTable ObtenerAmenidadesPorTipo(int idTipo)
+        {
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("ObtenerAmenidadesHabilitadas", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdTipo", idTipo);
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener las amenidades: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+        public bool InsertarAmenidad(int idTipo, String nombre)
+        {
+            bool exito = false;
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("InsertarAmenidadTipoHabitacion", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@Nombre", nombre);
+                comando.Parameters.AddWithValue("@IdTipo", idTipo);
+                int filas = comando.ExecuteNonQuery();
+                exito = (filas > 0);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al insertar amenidad: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return exito;
+        }
+        public bool DeshabilitarAmenidad(int idAmenidad)
+        {
+            bool exito = false;
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("DeshabilitarAmenidad", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdAmenidad", idAmenidad);
+
+                int filas = comando.ExecuteNonQuery();
+                exito = (filas > 0);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al deshabilitar amenidad: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return exito;
+        }
 
         /*
         

@@ -62,6 +62,10 @@
             this.label16 = new System.Windows.Forms.Label();
             this.siticoneButton5 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.actualizar = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.RegistroUsu = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.Tipos_habitacion = new System.Windows.Forms.Label();
+            this.Cantidad_Habitaciones = new System.Windows.Forms.Label();
             this.siticonePanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -565,10 +569,59 @@
             this.actualizar.Text = "Actualizar";
             this.actualizar.Click += new System.EventHandler(this.actualizar_Click);
             // 
+            // RegistroUsu
+            // 
+            this.RegistroUsu.AutoSize = true;
+            this.RegistroUsu.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RegistroUsu.Location = new System.Drawing.Point(65, 603);
+            this.RegistroUsu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.RegistroUsu.Name = "RegistroUsu";
+            this.RegistroUsu.Size = new System.Drawing.Size(137, 21);
+            this.RegistroUsu.TabIndex = 59;
+            this.RegistroUsu.Text = "Registrado por:";
+            this.RegistroUsu.Click += new System.EventHandler(this.RegistroUsu_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(478, 603);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(208, 21);
+            this.label9.TabIndex = 60;
+            this.label9.Text = "Fecha de Actualizacion";
+            // 
+            // Tipos_habitacion
+            // 
+            this.Tipos_habitacion.AutoSize = true;
+            this.Tipos_habitacion.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tipos_habitacion.Location = new System.Drawing.Point(60, 554);
+            this.Tipos_habitacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Tipos_habitacion.Name = "Tipos_habitacion";
+            this.Tipos_habitacion.Size = new System.Drawing.Size(175, 21);
+            this.Tipos_habitacion.TabIndex = 61;
+            this.Tipos_habitacion.Text = "Tipos de habitacion";
+            // 
+            // Cantidad_Habitaciones
+            // 
+            this.Cantidad_Habitaciones.AutoSize = true;
+            this.Cantidad_Habitaciones.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cantidad_Habitaciones.Location = new System.Drawing.Point(478, 554);
+            this.Cantidad_Habitaciones.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Cantidad_Habitaciones.Name = "Cantidad_Habitaciones";
+            this.Cantidad_Habitaciones.Size = new System.Drawing.Size(239, 21);
+            this.Cantidad_Habitaciones.TabIndex = 62;
+            this.Cantidad_Habitaciones.Text = "Cantidad de habitaciones:";
+            // 
             // UsCtrlHoteles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.Cantidad_Habitaciones);
+            this.Controls.Add(this.Tipos_habitacion);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.RegistroUsu);
             this.Controls.Add(this.actualizar);
             this.Controls.Add(this.siticoneButton5);
             this.Controls.Add(this.label16);
@@ -647,5 +700,9 @@
         private System.Windows.Forms.Label label16;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton5;
         private Siticone.Desktop.UI.WinForms.SiticoneButton actualizar;
+        private System.Windows.Forms.Label RegistroUsu;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label Tipos_habitacion;
+        private System.Windows.Forms.Label Cantidad_Habitaciones;
     }
 }

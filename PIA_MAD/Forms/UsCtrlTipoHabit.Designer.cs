@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtAmenidades = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtCamas = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtPersonas = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtPrecio = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -49,10 +49,21 @@
             this.label4 = new System.Windows.Forms.Label();
             this.Caracteristicas = new System.Windows.Forms.Label();
             this.txtCaracteristicas = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.txtTipoCamas = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.txtTipoCamas = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.txtPrecio = new Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown();
+            this.txtPersonas = new Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown();
+            this.txtCamas = new Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown();
+            this.siticoneButton2 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dgvAmenidades = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.EliminatBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticonePanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrecio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPersonas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCamas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAmenidades)).BeginInit();
             this.SuspendLayout();
             // 
             // txtAmenidades
@@ -66,7 +77,7 @@
             this.txtAmenidades.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtAmenidades.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtAmenidades.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtAmenidades.Location = new System.Drawing.Point(163, 442);
+            this.txtAmenidades.Location = new System.Drawing.Point(169, 572);
             this.txtAmenidades.Margin = new System.Windows.Forms.Padding(4);
             this.txtAmenidades.Name = "txtAmenidades";
             this.txtAmenidades.PasswordChar = '\0';
@@ -74,37 +85,19 @@
             this.txtAmenidades.SelectedText = "";
             this.txtAmenidades.Size = new System.Drawing.Size(289, 44);
             this.txtAmenidades.TabIndex = 32;
+            this.txtAmenidades.TextChanged += new System.EventHandler(this.txtAmenidades_TextChanged);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(23, 454);
+            this.label8.Location = new System.Drawing.Point(29, 584);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(116, 21);
+            this.label8.Size = new System.Drawing.Size(98, 21);
             this.label8.TabIndex = 31;
-            this.label8.Text = "Amenidades";
-            // 
-            // txtCamas
-            // 
-            this.txtCamas.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCamas.DefaultText = "";
-            this.txtCamas.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtCamas.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtCamas.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCamas.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCamas.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCamas.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtCamas.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCamas.Location = new System.Drawing.Point(685, 346);
-            this.txtCamas.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCamas.Name = "txtCamas";
-            this.txtCamas.PasswordChar = '\0';
-            this.txtCamas.PlaceholderText = "";
-            this.txtCamas.SelectedText = "";
-            this.txtCamas.Size = new System.Drawing.Size(289, 44);
-            this.txtCamas.TabIndex = 28;
+            this.label8.Text = "Amenidad";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label7
             // 
@@ -117,26 +110,6 @@
             this.label7.TabIndex = 27;
             this.label7.Text = "Camas";
             // 
-            // txtPersonas
-            // 
-            this.txtPersonas.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPersonas.DefaultText = "";
-            this.txtPersonas.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtPersonas.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtPersonas.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtPersonas.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtPersonas.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPersonas.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtPersonas.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPersonas.Location = new System.Drawing.Point(163, 270);
-            this.txtPersonas.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPersonas.Name = "txtPersonas";
-            this.txtPersonas.PasswordChar = '\0';
-            this.txtPersonas.PlaceholderText = "";
-            this.txtPersonas.SelectedText = "";
-            this.txtPersonas.Size = new System.Drawing.Size(289, 44);
-            this.txtPersonas.TabIndex = 24;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -147,26 +120,6 @@
             this.label5.Size = new System.Drawing.Size(117, 21);
             this.label5.TabIndex = 23;
             this.label5.Text = "No. Personas";
-            // 
-            // txtPrecio
-            // 
-            this.txtPrecio.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPrecio.DefaultText = "";
-            this.txtPrecio.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtPrecio.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtPrecio.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtPrecio.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtPrecio.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPrecio.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtPrecio.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPrecio.Location = new System.Drawing.Point(685, 193);
-            this.txtPrecio.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.PasswordChar = '\0';
-            this.txtPrecio.PlaceholderText = "";
-            this.txtPrecio.SelectedText = "";
-            this.txtPrecio.Size = new System.Drawing.Size(289, 44);
-            this.txtPrecio.TabIndex = 22;
             // 
             // label3
             // 
@@ -212,7 +165,7 @@
             // 
             this.siticonePanel1.Controls.Add(this.siticoneButton1);
             this.siticonePanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.siticonePanel1.Location = new System.Drawing.Point(0, 577);
+            this.siticonePanel1.Location = new System.Drawing.Point(0, 657);
             this.siticonePanel1.Margin = new System.Windows.Forms.Padding(4);
             this.siticonePanel1.Name = "siticonePanel1";
             this.siticonePanel1.Size = new System.Drawing.Size(1108, 74);
@@ -299,7 +252,7 @@
             this.siticoneButton4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.siticoneButton4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.siticoneButton4.ForeColor = System.Drawing.Color.White;
-            this.siticoneButton4.Location = new System.Drawing.Point(813, 398);
+            this.siticoneButton4.Location = new System.Drawing.Point(868, 357);
             this.siticoneButton4.Margin = new System.Windows.Forms.Padding(4);
             this.siticoneButton4.Name = "siticoneButton4";
             this.siticoneButton4.Size = new System.Drawing.Size(161, 55);
@@ -366,26 +319,7 @@
             this.txtCaracteristicas.SelectedText = "";
             this.txtCaracteristicas.Size = new System.Drawing.Size(289, 44);
             this.txtCaracteristicas.TabIndex = 47;
-            // 
-            // txtTipoCamas
-            // 
-            this.txtTipoCamas.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTipoCamas.DefaultText = "";
-            this.txtTipoCamas.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtTipoCamas.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtTipoCamas.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTipoCamas.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTipoCamas.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTipoCamas.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTipoCamas.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTipoCamas.Location = new System.Drawing.Point(685, 270);
-            this.txtTipoCamas.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTipoCamas.Name = "txtTipoCamas";
-            this.txtTipoCamas.PasswordChar = '\0';
-            this.txtTipoCamas.PlaceholderText = "";
-            this.txtTipoCamas.SelectedText = "";
-            this.txtTipoCamas.Size = new System.Drawing.Size(289, 44);
-            this.txtTipoCamas.TabIndex = 49;
+            this.txtCaracteristicas.TextChanged += new System.EventHandler(this.txtCaracteristicas_TextChanged);
             // 
             // label10
             // 
@@ -399,10 +333,171 @@
             this.label10.Text = "Tipo de cama(s)";
             this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
+            // txtTipoCamas
+            // 
+            this.txtTipoCamas.BackColor = System.Drawing.Color.Transparent;
+            this.txtTipoCamas.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.txtTipoCamas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtTipoCamas.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTipoCamas.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTipoCamas.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtTipoCamas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.txtTipoCamas.ItemHeight = 30;
+            this.txtTipoCamas.Items.AddRange(new object[] {
+            "Individual",
+            "Individual Grande",
+            "Queen",
+            "King",
+            "California King"});
+            this.txtTipoCamas.Location = new System.Drawing.Point(685, 278);
+            this.txtTipoCamas.Name = "txtTipoCamas";
+            this.txtTipoCamas.Size = new System.Drawing.Size(289, 36);
+            this.txtTipoCamas.TabIndex = 50;
+            // 
+            // txtPrecio
+            // 
+            this.txtPrecio.BackColor = System.Drawing.Color.Transparent;
+            this.txtPrecio.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPrecio.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtPrecio.Location = new System.Drawing.Point(685, 204);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(149, 36);
+            this.txtPrecio.TabIndex = 51;
+            this.txtPrecio.ValueChanged += new System.EventHandler(this.txtPrecio_ValueChanged);
+            // 
+            // txtPersonas
+            // 
+            this.txtPersonas.BackColor = System.Drawing.Color.Transparent;
+            this.txtPersonas.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPersonas.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtPersonas.Location = new System.Drawing.Point(163, 278);
+            this.txtPersonas.Name = "txtPersonas";
+            this.txtPersonas.Size = new System.Drawing.Size(149, 36);
+            this.txtPersonas.TabIndex = 52;
+            // 
+            // txtCamas
+            // 
+            this.txtCamas.BackColor = System.Drawing.Color.Transparent;
+            this.txtCamas.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCamas.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtCamas.Location = new System.Drawing.Point(685, 354);
+            this.txtCamas.Name = "txtCamas";
+            this.txtCamas.Size = new System.Drawing.Size(149, 36);
+            this.txtCamas.TabIndex = 53;
+            this.txtCamas.ValueChanged += new System.EventHandler(this.txtCamas_ValueChanged);
+            // 
+            // siticoneButton2
+            // 
+            this.siticoneButton2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.siticoneButton2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.siticoneButton2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.siticoneButton2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.siticoneButton2.ForeColor = System.Drawing.Color.White;
+            this.siticoneButton2.Location = new System.Drawing.Point(480, 584);
+            this.siticoneButton2.Margin = new System.Windows.Forms.Padding(4);
+            this.siticoneButton2.Name = "siticoneButton2";
+            this.siticoneButton2.Size = new System.Drawing.Size(161, 44);
+            this.siticoneButton2.TabIndex = 54;
+            this.siticoneButton2.Text = "Agregar";
+            this.siticoneButton2.Click += new System.EventHandler(this.siticoneButton2_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(30, 417);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(116, 21);
+            this.label6.TabIndex = 55;
+            this.label6.Text = "Amenidades";
+            // 
+            // dgvAmenidades
+            // 
+            this.dgvAmenidades.AllowUserToAddRows = false;
+            this.dgvAmenidades.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dgvAmenidades.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAmenidades.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvAmenidades.ColumnHeadersHeight = 4;
+            this.dgvAmenidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAmenidades.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvAmenidades.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvAmenidades.Location = new System.Drawing.Point(153, 417);
+            this.dgvAmenidades.Name = "dgvAmenidades";
+            this.dgvAmenidades.ReadOnly = true;
+            this.dgvAmenidades.RowHeadersVisible = false;
+            this.dgvAmenidades.RowHeadersWidth = 51;
+            this.dgvAmenidades.RowTemplate.Height = 24;
+            this.dgvAmenidades.Size = new System.Drawing.Size(557, 138);
+            this.dgvAmenidades.TabIndex = 56;
+            this.dgvAmenidades.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvAmenidades.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvAmenidades.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvAmenidades.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvAmenidades.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvAmenidades.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvAmenidades.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvAmenidades.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dgvAmenidades.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvAmenidades.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAmenidades.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvAmenidades.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dgvAmenidades.ThemeStyle.HeaderStyle.Height = 4;
+            this.dgvAmenidades.ThemeStyle.ReadOnly = true;
+            this.dgvAmenidades.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvAmenidades.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvAmenidades.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAmenidades.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvAmenidades.ThemeStyle.RowsStyle.Height = 24;
+            this.dgvAmenidades.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvAmenidades.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvAmenidades.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAmenidades_CellContentClick);
+            // 
+            // EliminatBtn
+            // 
+            this.EliminatBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.EliminatBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.EliminatBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.EliminatBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.EliminatBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.EliminatBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.EliminatBtn.ForeColor = System.Drawing.Color.White;
+            this.EliminatBtn.Location = new System.Drawing.Point(717, 438);
+            this.EliminatBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.EliminatBtn.Name = "EliminatBtn";
+            this.EliminatBtn.Size = new System.Drawing.Size(135, 42);
+            this.EliminatBtn.TabIndex = 57;
+            this.EliminatBtn.Text = "Eliminar";
+            this.EliminatBtn.Click += new System.EventHandler(this.EliminatBtn_Click);
+            // 
             // UsCtrlTipoHabit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.EliminatBtn);
+            this.Controls.Add(this.dgvAmenidades);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.siticoneButton2);
+            this.Controls.Add(this.txtCamas);
+            this.Controls.Add(this.txtPersonas);
+            this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.txtTipoCamas);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.Caracteristicas);
@@ -412,11 +507,8 @@
             this.Controls.Add(this.cmbTiposHab);
             this.Controls.Add(this.txtAmenidades);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtCamas);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtPersonas);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.siticonePanel1);
@@ -424,11 +516,15 @@
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UsCtrlTipoHabit";
-            this.Size = new System.Drawing.Size(1108, 651);
+            this.Size = new System.Drawing.Size(1108, 731);
             this.Load += new System.EventHandler(this.UsCtrlTipoHabit_Load);
             this.siticonePanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrecio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPersonas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCamas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAmenidades)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -438,11 +534,8 @@
 
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtAmenidades;
         private System.Windows.Forms.Label label8;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtCamas;
         private System.Windows.Forms.Label label7;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtPersonas;
         private System.Windows.Forms.Label label5;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtPrecio;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton1;
@@ -457,7 +550,14 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label Caracteristicas;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtCaracteristicas;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtTipoCamas;
         private System.Windows.Forms.Label label10;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox txtTipoCamas;
+        private Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown txtPrecio;
+        private Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown txtPersonas;
+        private Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown txtCamas;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton2;
+        private System.Windows.Forms.Label label6;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvAmenidades;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton EliminatBtn;
     }
 }

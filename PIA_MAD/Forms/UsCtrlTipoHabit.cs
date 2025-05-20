@@ -47,12 +47,12 @@ namespace PIA_MAD.Forms
         private void siticoneButton1_Click(object sender, EventArgs e)
         {
             EnlaceDB enlace = new EnlaceDB();
-            int cantPers = int.Parse(txtPersonas.Text);
+            int cantPers = (int)txtPersonas.Value;
             string caracteristicas =txtCaracteristicas.Text;
             string nivel = txtNivel.Text;
-            int camas = int.Parse(txtCamas.Text);
+            int camas = (int)txtCamas.Value;
             string amenidades = txtAmenidades.Text;
-            float precio = float.Parse(txtPrecio.Text);
+            decimal precio = txtPrecio.Value;
             int idHotel = (int)cmbHoteles.SelectedValue;
             string tipoCamas = txtTipoCamas.Text;
 
@@ -67,6 +67,20 @@ namespace PIA_MAD.Forms
 
         private void UsCtrlTipoHabit_Load(object sender, EventArgs e)
         {
+            txtPrecio.Maximum = 1000000; // O el valor que necesites
+            txtPrecio.Minimum = 100;
+            txtPrecio.Increment = 10;
+            txtPrecio.ThousandsSeparator = true;
+            txtPrecio.DecimalPlaces = 2;
+            // camas
+            txtCamas.Minimum = 1; 
+            txtCamas.Increment = 1;
+            txtCamas.DecimalPlaces = 0;
+            // personas
+            txtPersonas.Minimum = 1;
+            txtPersonas.Increment = 1;
+            txtPersonas.DecimalPlaces = 0;
+
             CargarHoteles();
             //CargarTiposHabitacion();
 
@@ -88,23 +102,29 @@ namespace PIA_MAD.Forms
             // Llenas los campos con los datos recuperados
            // txtNombre.Text = dt.Rows[0]["NombreTipo"].ToString();
             txtNivel.Text = dt.Rows[0]["Nivel"].ToString();
-            txtPrecio.Text = dt.Rows[0]["Precio"].ToString();
-            txtCamas.Text = dt.Rows[0]["Camas"].ToString();
+            txtPrecio.Value = Convert.ToDecimal(dt.Rows[0]["Precio"]);
+            txtCamas.Value = Convert.ToDecimal(dt.Rows[0]["Camas"]);
             txtTipoCamas.Text = dt.Rows[0]["Tipo_Camas"].ToString();
-            txtPersonas.Text = dt.Rows[0]["Cant_Pers"].ToString();
-            
+            txtPersonas.Value= Convert.ToDecimal(dt.Rows[0]["Cant_Pers"]);
+            txtCaracteristicas.Text = dt.Rows[0]["Caracteristicas"].ToString();
+
+            /// aqui debe cargar las amenidades de dicho tipo de habitacion
+            DataTable dt2 = new DataTable();
+            dt2 = enlace.ObtenerAmenidadesPorTipo(idTipo);
+            dgvAmenidades.DataSource= dt2;
+            dgvAmenidades.Columns["IdAmenidad"].Visible = false;
 
         }
 
         private void siticoneButton4_Click(object sender, EventArgs e)
         {
             int idTipo = (int)cmbTiposHab.SelectedValue;
-            int cantPers = int.Parse(txtPersonas.Text);
+            int cantPers = (int)txtPersonas.Value;
             string caracteristicas = txtCaracteristicas.Text;
             string nivel = txtNivel.Text;
-            int camas = int.Parse(txtCamas.Text);
+            int camas = (int)txtCamas.Value;
             string tipoCamas = txtTipoCamas.Text;
-            float precio = float.Parse(txtPrecio.Text);
+            decimal precio = txtPrecio.Value;
 
             EnlaceDB enlace = new EnlaceDB();
             bool ok = enlace.ActualizarTipoHabitacion(idTipo, cantPers, caracteristicas, nivel, camas, tipoCamas, precio);
@@ -116,6 +136,81 @@ namespace PIA_MAD.Forms
         }
 
         private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCaracteristicas_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCamas_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAmenidades_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvAmenidades_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvAmenidades.Rows[e.RowIndex];
+                string nombreAmenidad = row.Cells["Nombre"].Value.ToString();
+                string idAmenidad = row.Cells["IdAmenidad"].Value.ToString();
+
+                MessageBox.Show($"Esta es la amenidad seleccionada: {nombreAmenidad}\nID: {idAmenidad}");
+            }
+        }
+
+        private void EliminatBtn_Click(object sender, EventArgs e)
+        {
+            if (dgvAmenidades.CurrentRow != null)
+            {
+                int idAmenidad = Convert.ToInt32(dgvAmenidades.CurrentRow.Cells["IdAmenidad"].Value);
+                string nombreAmenidad = dgvAmenidades.CurrentRow.Cells["Nombre"].Value.ToString();
+
+                DialogResult result = MessageBox.Show($"¿Seguro que deseas eliminar la amenidad \"{nombreAmenidad}\"?", "Confirmación", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+
+                    EnlaceDB enlace = new EnlaceDB();
+                    bool exito = enlace.DeshabilitarAmenidad(idAmenidad);
+                    if (exito)
+                    {
+                        MessageBox.Show("Amenidad eliminada correctamente.");
+                        // Refresca el DataGridView
+                        int idTipo = (int)cmbTiposHab.SelectedValue;
+                        dgvAmenidades.DataSource = enlace.ObtenerAmenidadesPorTipo(idTipo);
+                        dgvAmenidades.Columns["IdAmenidad"].Visible = false;
+                    }
+                }
+            }
+        }
+
+        private void siticoneButton2_Click(object sender, EventArgs e)
+        {
+            EnlaceDB enlace = new EnlaceDB();
+            int idTipo = (int)cmbTiposHab.SelectedValue;
+            bool exito = enlace.InsertarAmenidad(idTipo, txtAmenidades.Text);
+            if (exito)
+            {
+                MessageBox.Show("Amenidad Insertada correctamente.");
+                dgvAmenidades.DataSource = enlace.ObtenerAmenidadesPorTipo(idTipo);
+                dgvAmenidades.Columns["IdAmenidad"].Visible = false;
+            }
+        }
+
+        private void txtPrecio_ValueChanged(object sender, EventArgs e)
         {
 
         }

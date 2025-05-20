@@ -53,5 +53,21 @@ namespace PIA_MAD
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void txtCorreo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FrmCambioContrasena frmCambio = new FrmCambioContrasena();
+            frmCambio.ShowDialog(); 
+        }
     }
 }

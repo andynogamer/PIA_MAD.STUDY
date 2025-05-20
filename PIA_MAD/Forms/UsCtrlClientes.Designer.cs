@@ -260,6 +260,7 @@
             this.txtApPaterno.SelectedText = "";
             this.txtApPaterno.Size = new System.Drawing.Size(289, 44);
             this.txtApPaterno.TabIndex = 22;
+            this.txtApPaterno.TextChanged += new System.EventHandler(this.txtApPaterno_TextChanged);
             // 
             // txtNombres
             // 
