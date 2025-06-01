@@ -32,7 +32,7 @@ namespace PIA_MAD.Forms
         private void CargarClientes()
         {
             EnlaceDB enlace = new EnlaceDB();
-            ClientesEncontrados.DataSource = enlace.ObtenerClientes(Busqueda.Text);
+          //  ClientesEncontrados.DataSource = enlace.ObtenerClientes(Busqueda.Text,filtrar);
             ClientesEncontrados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             // Asignar nombres personalizados a las columnas que sí mostraremos
@@ -50,7 +50,7 @@ namespace PIA_MAD.Forms
         private void Busqueda_TextChanged(object sender, EventArgs e)
         {
             EnlaceDB enlace = new EnlaceDB();
-            ClientesEncontrados.DataSource = enlace.ObtenerClientes(Busqueda.Text);
+          //  ClientesEncontrados.DataSource = enlace.ObtenerClientes(Busqueda.Text);
         }
 
         private void ClientesEncontrados_CellContentClick(object sender, DataGridViewCellEventArgs e)

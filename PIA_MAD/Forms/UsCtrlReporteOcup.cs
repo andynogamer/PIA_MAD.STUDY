@@ -29,10 +29,11 @@ namespace PIA_MAD.Forms
         private void CargarPaises()
         {
             EnlaceDB enlace = new EnlaceDB();
-            cmbPais.SelectedIndexChanged -= cmbPais_SelectedIndexChanged;
-            cmbPais.DataSource = enlace.ObtenerPaises(); // método que retorna DataTable
             cmbPais.DisplayMember = "Nombre";
             cmbPais.ValueMember = "IdPais";
+            cmbPais.SelectedIndexChanged -= cmbPais_SelectedIndexChanged;
+            cmbPais.DataSource = enlace.ObtenerPaises(); // método que retorna DataTable
+            
             cmbPais.SelectedIndex = -1;
 
             cmbPais.SelectedIndexChanged += cmbPais_SelectedIndexChanged;
@@ -40,11 +41,12 @@ namespace PIA_MAD.Forms
         public void CargarHotelesCiudad()
         {
             EnlaceDB enlace = new EnlaceDB();
+            HotelesCiudad.DisplayMember = "Nombre_Hotel";
+            HotelesCiudad.ValueMember = "IdHotel";
             int idCiudadSeleccionada = Convert.ToInt32(((DataRowView)CiudadesDisponibles.SelectedItem)["IdCiudad"]);
             DataTable ciudades2 = enlace.ObtenerHotelesPorCiudad2(idCiudadSeleccionada);
             HotelesCiudad.DataSource = ciudades2;
-            HotelesCiudad.DisplayMember = "Nombre_Hotel";
-            HotelesCiudad.ValueMember = "IdHotel";
+            
         }
         private void UsCtrlReporteOcup_Load(object sender, EventArgs e)
         {
@@ -68,10 +70,11 @@ namespace PIA_MAD.Forms
             EnlaceDB enlace = new EnlaceDB();
             // obtener Ciudad paises
 
-            DataTable hoteles = enlace.ObtenerCiudadesPorPais((int)cmbPais.SelectedValue);
-            CiudadesDisponibles.DataSource = hoteles;
             CiudadesDisponibles.DisplayMember = "Ciudad";
             CiudadesDisponibles.ValueMember = "IdCiudad";
+            DataTable hoteles = enlace.ObtenerCiudadesPorPais((int)cmbPais.SelectedValue);
+            CiudadesDisponibles.DataSource = hoteles;
+            
         }
 
         private void CiudadesDisponibles_SelectedIndexChanged(object sender, EventArgs e)

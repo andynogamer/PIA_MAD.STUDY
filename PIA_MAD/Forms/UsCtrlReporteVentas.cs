@@ -45,11 +45,12 @@ namespace PIA_MAD.Forms
         public void CargarHotelesCiudad()
         {
             EnlaceDB enlace = new EnlaceDB();
+            HotelesCiudad.DisplayMember = "Nombre_Hotel";
+            HotelesCiudad.ValueMember = "IdHotel";
             int idCiudadSeleccionada = Convert.ToInt32(((DataRowView)CiudadesDisponibles.SelectedItem)["IdCiudad"]);
             DataTable ciudades2 = enlace.ObtenerHotelesPorCiudad2(idCiudadSeleccionada);
             HotelesCiudad.DataSource = ciudades2;
-            HotelesCiudad.DisplayMember = "Nombre_Hotel";
-            HotelesCiudad.ValueMember = "IdHotel";
+            
         }
 
         private void cmbCiudad_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,11 +64,11 @@ namespace PIA_MAD.Forms
             //CargarHotelesCiudad();
             EnlaceDB enlace = new EnlaceDB();
             // obtener Ciudad paises
-
-            DataTable hoteles = enlace.ObtenerCiudadesPorPais((int)cmbPais.SelectedValue);
-            CiudadesDisponibles.DataSource= hoteles;
             CiudadesDisponibles.DisplayMember = "Ciudad";
             CiudadesDisponibles.ValueMember = "IdCiudad";
+            DataTable hoteles = enlace.ObtenerCiudadesPorPais((int)cmbPais.SelectedValue);
+            CiudadesDisponibles.DataSource= hoteles;
+            
 
         }
 

@@ -11,13 +11,13 @@ using static PIA_MAD.Forms.Estructuras;
 
 namespace PIA_MAD.Forms
 {
-    public partial class FrmPantallaInicio: Form
+    public partial class FrmPantallaInicioADMIN: Form
     {
-        public FrmPantallaInicio()
+        public FrmPantallaInicioADMIN()
         {
             InitializeComponent();
-            UsCtrlClientes usCtrlClientes = new UsCtrlClientes();
-            ShowView(usCtrlClientes);
+            UsCtrlUsuarios userControl1 = new UsCtrlUsuarios();
+            ShowView(userControl1);
         }
 
         private void ShowView(UserControl vista)
@@ -25,8 +25,19 @@ namespace PIA_MAD.Forms
             siticonePanel3.Controls.Clear();
             vista.Dock = DockStyle.Fill;
             siticonePanel3.Controls.Add(vista);
-           
+            int tipoUsuario = SesionUsuario.TipoUsu;
+            if (tipoUsuario == 2)
+            {
+                siticoneButton7.Enabled = false;
+                siticoneButton8.Enabled = false;
+                siticoneButton9.Enabled = false;
+                siticoneButton12.Enabled = false;
+                siticoneButton2.Enabled = false;
+
+            }
         }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -74,7 +85,12 @@ namespace PIA_MAD.Forms
 
         private void siticoneButton7_Click(object sender, EventArgs e)
         {
-           
+            int tipoUsuario = SesionUsuario.TipoUsu;
+            if (tipoUsuario == 2)
+            {
+                siticoneButton7.Enabled = false;
+                return;
+            }
             UsCtrlReporteOcup usCtrlReporteOcup = new UsCtrlReporteOcup();
             ShowView(usCtrlReporteOcup);
 
@@ -82,14 +98,24 @@ namespace PIA_MAD.Forms
 
         private void siticoneButton9_Click(object sender, EventArgs e)
         {
-          
+            int tipoUsuario = SesionUsuario.TipoUsu;
+            if (tipoUsuario == 2)
+            {
+                siticoneButton9.Enabled = false;
+                return;
+            }
             UsCtrlHistorialCliente usCtrlHistorialClient = new UsCtrlHistorialCliente();
             ShowView(usCtrlHistorialClient);
         }
 
         private void siticoneButton8_Click(object sender, EventArgs e)
         {
-           
+            int tipoUsuario = SesionUsuario.TipoUsu;
+            if (tipoUsuario == 2)
+            {
+                siticoneButton8.Enabled = false;
+                return;
+            }
             UsCtrlReporteVentas usCtrlReporteVentas = new UsCtrlReporteVentas();
             ShowView(usCtrlReporteVentas);
         }
@@ -113,7 +139,12 @@ namespace PIA_MAD.Forms
 
         private void siticoneButton12_Click(object sender, EventArgs e)
         {
-           
+            int tipoUsuario = SesionUsuario.TipoUsu;
+            if (tipoUsuario == 2)
+            {
+                siticoneButton12.Enabled= false;
+                return;
+            }
             UsCtrlCancelaciones ctrlCancelaciones = new UsCtrlCancelaciones();
             ShowView(ctrlCancelaciones);
         }

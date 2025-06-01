@@ -52,39 +52,16 @@ namespace PIA_MAD.Forms
             cmbCiudad.SelectedIndexChanged += cmbCiudad_SelectedIndexChanged;
         }
 
-        private void CargarMunicipios(int idCiudad)
+        private void CargarClientes()
         {
             EnlaceDB enlace = new EnlaceDB();
-
-            cmbMunicipio.SelectedIndexChanged -= cmbMunicipio_SelectedIndexChanged;
-
-            cmbMunicipio.DataSource = enlace.ObtenerMunicipios(idCiudad);
-            cmbMunicipio.DisplayMember = "Nombre";
-            cmbMunicipio.ValueMember = "IdMunicipio";
-            cmbMunicipio.SelectedIndex = -1;
-
-            cmbMunicipio.SelectedIndexChanged += cmbMunicipio_SelectedIndexChanged;
+            dgvClientes.DataSource = enlace.ObtenerClientes();
+            dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
+        int cliente = -1;
 
-        private void CargarColonias(int idMunicipio)
-        {
-            EnlaceDB enlace = new EnlaceDB();
-
-            cmbColonia.DataSource = enlace.ObtenerColonias(idMunicipio);
-            cmbColonia.DisplayMember = "Nombre";
-            cmbColonia.ValueMember = "IdColonia";
-            cmbColonia.SelectedIndex = -1;
-        }
-        private void CargarCodigoPostal(int idColonia)
-        {
-            EnlaceDB enlace = new EnlaceDB();
-            string codigoPostal = enlace.ObtenerCodigoPostalPorColonia(idColonia); // Este método lo creas en EnlaceDB
-
-            if (!string.IsNullOrEmpty(codigoPostal))
-            {
-                siticoneComboBoxColonia.Text = codigoPostal; // Asume que tienes un TextBox llamado txtCodigoPostal
-            }
-        }
+     
+     
         public UsCtrlClientes()
         {
             InitializeComponent();
@@ -97,35 +74,7 @@ namespace PIA_MAD.Forms
 
         private void siticoneButton1_Click(object sender, EventArgs e)
         {
-            var enlaces = new EnlaceDB();
-
-            int idDir = enlaces.InsertarDireccion(
-       (int)cmbPais.SelectedValue,
-       (int)cmdEstado.SelectedValue,
-       (int)cmbCiudad.SelectedValue,
-       cmbMunicipio.SelectedIndex != -1 ? (int?)cmbMunicipio.SelectedValue : null,
-       cmbColonia.SelectedIndex != -1 ? (int?)cmbColonia.SelectedValue : null,
-       Calle.Text,
-       NumExterior.Text,
-       NumInterior.Text
-   );
-
-            if (idDir <= 0)
-            {
-                MessageBox.Show("Error al crear la dirección.");
-                return;
-            }
-            // 2) Ahora inserto el hotel usando una instancia de EnlaceDB
-            char estadoCivilSeleccionado = ((KeyValuePair<char, string>)cmbEstadoCivil.SelectedItem).Key;
-
-            bool ok = enlaces.InsertarCliente(txtRFC.Text,txtNombres.Text,txtApPaterno.Text,txtApMaterno.Text,idDir,txtTelCasa.Text,
-    txtTelCel.Text,txtCorreo.Text, estadoCivilSeleccionado, // suponiendo que el ComboBox guarda 'C' o 'S'
-    dtpFechaNac.Value.Date);
-
-            if (ok)
-                MessageBox.Show("Hotel registrado correctamente.");
-            else
-                MessageBox.Show("Error al registrar el hotel.");
+         
         }
 
         private void siticoneDateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -137,10 +86,10 @@ namespace PIA_MAD.Forms
         private void UsCtrlClientes_Load(object sender, EventArgs e)
         {
             Dictionary<char, string> estadoCivil = new Dictionary<char, string>()
-        {
-        { 'C', "Casado" },
-        { 'S', "Soltero" }
-        };
+            {
+             { 'C', "Casado" },
+             { 'S', "Soltero" }
+            };
 
             cmbEstadoCivil.DataSource = new BindingSource(estadoCivil, null);
             cmbEstadoCivil.DisplayMember = "Value"; // Lo que ve el usuario
@@ -149,6 +98,7 @@ namespace PIA_MAD.Forms
             dtpFechaNac.MinDate = new DateTime(1900, 1, 1);                  // No permitir fechas antes de 1900
             dtpFechaNac.MaxDate = DateTime.Today.AddYears(-18);             // Solo mayores de 18 años
             dtpFechaNac.Value = DateTime.Today.AddYears(-18);
+            CargarClientes();
         }
 
         private void cmbPais_SelectedIndexChanged(object sender, EventArgs e)
@@ -170,34 +120,144 @@ namespace PIA_MAD.Forms
 
         private void cmbCiudad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbCiudad.SelectedIndex != -1)
-            {
-                int idCiudadSeleccionada = (int)cmbCiudad.SelectedValue;
-                CargarMunicipios(idCiudadSeleccionada);
-            }
+            
         }
 
         private void cmbMunicipio_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbMunicipio.SelectedIndex != -1)
-            {
-                int idMunicipioSeleccionado = (int)cmbMunicipio.SelectedValue;
-                CargarColonias(idMunicipioSeleccionado);
-            }
+           
         }
 
         private void cmbColonia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbMunicipio.SelectedIndex != -1)
-            {
-                int idColonia = Convert.ToInt32(cmbMunicipio.SelectedValue);
-                CargarCodigoPostal(idColonia);
-            }
+            
         }
 
         private void txtApPaterno_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtApMaterno_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGuardarCli_Click(object sender, EventArgs e)
+        {
+
+            if (cliente > 0)
+            {
+                cliente = cliente - 1;
+                MessageBox.Show("Intentelo de neuvo, tenia seleccionado un cliente.");
+                return;
+            }
+
+             var enlaces = new EnlaceDB();
+            int idDir = enlaces.InsertarDireccion((int)cmbPais.SelectedValue,(int)cmdEstado.SelectedValue,(int)cmbCiudad.SelectedValue, Calle.Text);
+
+            if (idDir <= 0)
+            {
+                MessageBox.Show("Error al crear la dirección.");
+                return;
+            }
+            // 2) Ahora inserto el hotel usando una instancia de EnlaceDB
+            char estadoCivilSeleccionado = ((KeyValuePair<char, string>)cmbEstadoCivil.SelectedItem).Key;
+
+          bool ok = enlaces.InsertarCliente(txtRFC.Text,txtNombres.Text,txtApPaterno.Text,txtApMaterno.Text,idDir,txtTelCasa.Text,txtTelCel.Text,txtCorreo.Text, estadoCivilSeleccionado,dtpFechaNac.Value.Date);
+            if (ok)
+                MessageBox.Show("Hotel registrado correctamente.");
+            else
+                MessageBox.Show("Error al registrar el hotel.");
+            CargarClientes();
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            if (cliente > 0)
+
+            {
+                var enlaces = new EnlaceDB();
+                int idDir = enlaces.InsertarDireccion((int)cmbPais.SelectedValue, (int)cmdEstado.SelectedValue, (int)cmbCiudad.SelectedValue, Calle.Text);
+
+                if (idDir <= 0)
+                {
+                    MessageBox.Show("Error al crear la dirección.");
+                    return;
+                }
+                // 2) Ahora inserto el hotel usando una instancia de EnlaceDB
+                char estadoCivilSeleccionado = ((KeyValuePair<char, string>)cmbEstadoCivil.SelectedItem).Key;
+
+                bool ok = enlaces.ActualizarCliente(cliente, txtRFC.Text, txtNombres.Text, txtApPaterno.Text, txtApMaterno.Text, idDir, txtTelCasa.Text, txtTelCel.Text, txtCorreo.Text, estadoCivilSeleccionado, dtpFechaNac.Value.Date);
+                if (ok)
+                    MessageBox.Show("Hotel registrado correctamente.");
+                else
+                    MessageBox.Show("Error al registrar el hotel.");
+                CargarClientes();
+                cliente = -1;
+                txtNombres.Text = "";
+                txtRFC.Text = "";
+                txtApPaterno.Text = "";
+                txtApMaterno.Text = "";
+                txtCorreo.Text = "";
+                // limpiar fecha...
+                txtTelCasa.Text ="";
+                txtTelCel.Text = "";
+                cmbEstadoCivil.Text ="";
+            }
+            else
+            {
+                return;
+            }
+
+                
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dgvClientes.Rows[e.RowIndex];
+                // para mostrar al seleccionado
+                string nombreCompleto = $"{fila.Cells["Nombre_Completo"].Value}";
+                DialogResult result = MessageBox.Show($"¿Desea seleccionar a:\n\n{nombreCompleto}\n?",
+                                                    "Confirmar cliente",
+                                                    MessageBoxButtons.YesNo,
+                                                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    cliente = Convert.ToInt32(fila.Cells["IdCliente"].Value);
+                    nombreCompleto = $"Usuario seleccionado: {nombreCompleto}";
+                }
+                EnlaceDB enlace = new EnlaceDB();
+                //
+                DataTable dt = enlace.ObtenerClientesID(cliente);
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow fila2 = dt.Rows[0];
+                    txtNombres.Text = fila2["Nombres"].ToString();
+                    txtRFC.Text = fila2["RFC"].ToString();
+                    txtApPaterno.Text = fila2["ApPaterno"].ToString();
+                    txtApMaterno.Text = fila2["ApMaterno"].ToString();
+                    txtCorreo.Text = fila2["Correo"].ToString();
+                    dtpFechaNac.Value = Convert.ToDateTime(fila2["Fecha_Nac"]);
+                    txtTelCasa.Text = fila2["TelCasa"].ToString();
+                    txtTelCel.Text = fila2["Telcel"].ToString();
+                    cmbEstadoCivil.Text = fila2["Estado_Civil"].ToString();
+                }
+
+            }
         }
     }
 }

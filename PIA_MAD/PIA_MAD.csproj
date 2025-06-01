@@ -58,6 +58,12 @@
     <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmCambioContrasena.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,12 @@
     <Compile Include="Forms\FrmPantallaInicio.Designer.cs">
       <DependentUpon>FrmPantallaInicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmPantallaInicioADMIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmPantallaInicioADMIN.Designer.cs">
+      <DependentUpon>FrmPantallaInicioADMIN.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UsCtrlCancelaciones.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -81,12 +93,6 @@
     </Compile>
     <Compile Include="Forms\UsCtrlClientes.Designer.cs">
       <DependentUpon>UsCtrlClientes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\UsCtrlHabit.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\UsCtrlHabit.Designer.cs">
-      <DependentUpon>UsCtrlHabit.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UsCtrlHistorialCliente.cs">
       <SubType>UserControl</SubType>
@@ -147,20 +153,23 @@
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmCambioContrasena.resx">
       <DependentUpon>FrmCambioContrasena.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmPantallaInicio.resx">
       <DependentUpon>FrmPantallaInicio.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmPantallaInicioADMIN.resx">
+      <DependentUpon>FrmPantallaInicioADMIN.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UsCtrlCancelaciones.resx">
       <DependentUpon>UsCtrlCancelaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UsCtrlClientes.resx">
       <DependentUpon>UsCtrlClientes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UsCtrlHabit.resx">
-      <DependentUpon>UsCtrlHabit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UsCtrlHistorialCliente.resx">
       <DependentUpon>UsCtrlHistorialCliente.cs</DependentUpon>

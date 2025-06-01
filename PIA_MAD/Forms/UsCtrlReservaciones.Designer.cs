@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.label7 = new System.Windows.Forms.Label();
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbFiltro = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.Busqueda = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.siticoneButton4 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.CiudadesDisponibles = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.HotelesCiudad = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
@@ -54,11 +55,14 @@
             this.dgvHabitaciones = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.Reservarbtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.numericUpDownAnticipo = new Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown();
+            this.siticoneAnimateWindow1 = new Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow(this.components);
+            this.dgvHotelesDispo = new System.Windows.Forms.DataGridView();
             this.siticonePanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ClientesEncontrados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHabitaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAnticipo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHotelesDispo)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -114,8 +118,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cmbFiltro);
             this.panel1.Controls.Add(this.Busqueda);
-            this.panel1.Controls.Add(this.siticoneButton4);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -123,6 +127,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1322, 74);
             this.panel1.TabIndex = 46;
+            // 
+            // cmbFiltro
+            // 
+            this.cmbFiltro.BackColor = System.Drawing.Color.Transparent;
+            this.cmbFiltro.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFiltro.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbFiltro.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbFiltro.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbFiltro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cmbFiltro.ItemHeight = 30;
+            this.cmbFiltro.Items.AddRange(new object[] {
+            "RFC",
+            "Correo",
+            "Apellido"});
+            this.cmbFiltro.Location = new System.Drawing.Point(966, 18);
+            this.cmbFiltro.Name = "cmbFiltro";
+            this.cmbFiltro.Size = new System.Drawing.Size(140, 36);
+            this.cmbFiltro.TabIndex = 78;
             // 
             // Busqueda
             // 
@@ -143,22 +166,6 @@
             this.Busqueda.Size = new System.Drawing.Size(528, 55);
             this.Busqueda.TabIndex = 77;
             this.Busqueda.TextChanged += new System.EventHandler(this.Busqueda_TextChanged);
-            // 
-            // siticoneButton4
-            // 
-            this.siticoneButton4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.siticoneButton4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneButton4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.siticoneButton4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.siticoneButton4.ForeColor = System.Drawing.Color.White;
-            this.siticoneButton4.Location = new System.Drawing.Point(925, 10);
-            this.siticoneButton4.Margin = new System.Windows.Forms.Padding(4);
-            this.siticoneButton4.Name = "siticoneButton4";
-            this.siticoneButton4.Size = new System.Drawing.Size(161, 55);
-            this.siticoneButton4.TabIndex = 76;
-            this.siticoneButton4.Text = "AGREGAR";
             // 
             // CiudadesDisponibles
             // 
@@ -181,7 +188,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(605, 239);
+            this.label4.Location = new System.Drawing.Point(665, 228);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 21);
@@ -198,7 +205,7 @@
             this.HotelesCiudad.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.HotelesCiudad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.HotelesCiudad.ItemHeight = 30;
-            this.HotelesCiudad.Location = new System.Drawing.Point(680, 228);
+            this.HotelesCiudad.Location = new System.Drawing.Point(669, 382);
             this.HotelesCiudad.Margin = new System.Windows.Forms.Padding(4);
             this.HotelesCiudad.Name = "HotelesCiudad";
             this.HotelesCiudad.Size = new System.Drawing.Size(582, 36);
@@ -209,7 +216,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(565, 293);
+            this.label6.Location = new System.Drawing.Point(25, 345);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(93, 21);
@@ -247,7 +254,7 @@
             this.dtpMañana.Checked = true;
             this.dtpMañana.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpMañana.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpMañana.Location = new System.Drawing.Point(680, 282);
+            this.dtpMañana.Location = new System.Drawing.Point(140, 334);
             this.dtpMañana.Margin = new System.Windows.Forms.Padding(4);
             this.dtpMañana.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpMañana.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
@@ -272,26 +279,26 @@
             // 
             this.ClientesEncontrados.AllowUserToAddRows = false;
             this.ClientesEncontrados.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle31.BackColor = System.Drawing.Color.White;
-            this.ClientesEncontrados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle31;
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle32.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ClientesEncontrados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.ClientesEncontrados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ClientesEncontrados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.ClientesEncontrados.ColumnHeadersHeight = 4;
             this.ClientesEncontrados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle33.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle33.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ClientesEncontrados.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ClientesEncontrados.DefaultCellStyle = dataGridViewCellStyle9;
             this.ClientesEncontrados.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.ClientesEncontrados.Location = new System.Drawing.Point(113, 103);
             this.ClientesEncontrados.Name = "ClientesEncontrados";
@@ -344,28 +351,28 @@
             // 
             this.dgvHabitaciones.AllowUserToAddRows = false;
             this.dgvHabitaciones.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle34.BackColor = System.Drawing.Color.White;
-            this.dgvHabitaciones.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle34;
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle35.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle35.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHabitaciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.dgvHabitaciones.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHabitaciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvHabitaciones.ColumnHeadersHeight = 4;
             this.dgvHabitaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle36.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle36.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle36.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvHabitaciones.DefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvHabitaciones.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvHabitaciones.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvHabitaciones.Location = new System.Drawing.Point(113, 368);
+            this.dgvHabitaciones.Location = new System.Drawing.Point(17, 442);
             this.dgvHabitaciones.Name = "dgvHabitaciones";
             this.dgvHabitaciones.RowHeadersVisible = false;
             this.dgvHabitaciones.RowHeadersWidth = 51;
@@ -403,7 +410,7 @@
             this.Reservarbtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.Reservarbtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Reservarbtn.ForeColor = System.Drawing.Color.White;
-            this.Reservarbtn.Location = new System.Drawing.Point(834, 577);
+            this.Reservarbtn.Location = new System.Drawing.Point(834, 613);
             this.Reservarbtn.Name = "Reservarbtn";
             this.Reservarbtn.Size = new System.Drawing.Size(180, 45);
             this.Reservarbtn.TabIndex = 80;
@@ -421,10 +428,24 @@
             this.numericUpDownAnticipo.TabIndex = 81;
             this.numericUpDownAnticipo.ValueChanged += new System.EventHandler(this.siticoneNumericUpDown1_ValueChanged);
             // 
+            // dgvHotelesDispo
+            // 
+            this.dgvHotelesDispo.AllowUserToAddRows = false;
+            this.dgvHotelesDispo.AllowUserToDeleteRows = false;
+            this.dgvHotelesDispo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvHotelesDispo.Location = new System.Drawing.Point(552, 256);
+            this.dgvHotelesDispo.Name = "dgvHotelesDispo";
+            this.dgvHotelesDispo.ReadOnly = true;
+            this.dgvHotelesDispo.RowHeadersWidth = 51;
+            this.dgvHotelesDispo.RowTemplate.Height = 24;
+            this.dgvHotelesDispo.Size = new System.Drawing.Size(699, 122);
+            this.dgvHotelesDispo.TabIndex = 82;
+            // 
             // UsCtrlReservaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dgvHotelesDispo);
             this.Controls.Add(this.numericUpDownAnticipo);
             this.Controls.Add(this.Reservarbtn);
             this.Controls.Add(this.dgvHabitaciones);
@@ -450,6 +471,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ClientesEncontrados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHabitaciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAnticipo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHotelesDispo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -469,12 +491,14 @@
         private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker dtpHoy;
         private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker dtpMañana;
         private System.Windows.Forms.Label label10;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton4;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView ClientesEncontrados;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox Busqueda;
         private Siticone.Desktop.UI.WinForms.SiticoneContextMenuStrip siticoneContextMenuStrip1;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dgvHabitaciones;
         private Siticone.Desktop.UI.WinForms.SiticoneButton Reservarbtn;
         private Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown numericUpDownAnticipo;
+        private Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow siticoneAnimateWindow1;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox cmbFiltro;
+        private System.Windows.Forms.DataGridView dgvHotelesDispo;
     }
 }

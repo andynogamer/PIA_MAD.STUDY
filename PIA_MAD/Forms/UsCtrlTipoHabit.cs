@@ -20,7 +20,7 @@ namespace PIA_MAD.Forms
         }
         private void CargarTiposHabitacion()
         {
-            EnlaceDB enlace = new EnlaceDB();
+           /* EnlaceDB enlace = new EnlaceDB();
             int idHotel = Convert.ToInt32(cmbHoteles.SelectedValue); // Asegúrate de que este combo esté cargado primer
             
             cmbTiposHab.DisplayMember = "Nivel"; // Mostrar al usuario
@@ -28,7 +28,7 @@ namespace PIA_MAD.Forms
             //// la siguiente linea va al ginal de a fuerza o no funciona este pex
             cmbTiposHab.DataSource = enlace.ObtenerTiposHabitacionPorHotel2(idHotel);
 
-
+*/
         }
         private void CargarHoteles()
         {
@@ -46,7 +46,8 @@ namespace PIA_MAD.Forms
 
         private void siticoneButton1_Click(object sender, EventArgs e)
         {
-            EnlaceDB enlace = new EnlaceDB();
+           
+            /*EnlaceDB enlace = new EnlaceDB();
             int cantPers = (int)txtPersonas.Value;
             string caracteristicas =txtCaracteristicas.Text;
             string nivel = txtNivel.Text;
@@ -62,7 +63,7 @@ namespace PIA_MAD.Forms
                 MessageBox.Show("Tipo de habitación registrada correctamente.");
             else
                 MessageBox.Show("Ocurrió un error al registrar el tipo de habitación.");
-
+            */
         }
 
         private void UsCtrlTipoHabit_Load(object sender, EventArgs e)
@@ -94,7 +95,7 @@ namespace PIA_MAD.Forms
 
         private void cmbTiposHab_SelectedIndexChanged(object sender, EventArgs e)
         {
-            EnlaceDB enlace = new EnlaceDB();
+           /* EnlaceDB enlace = new EnlaceDB();
             int idHotel = (int)cmbHoteles.SelectedValue;
             int idTipo = (int)cmbTiposHab.SelectedValue;
             DataTable dt = enlace.ObtenerTiposHabitacionPorHotel(idHotel,idTipo);
@@ -113,12 +114,12 @@ namespace PIA_MAD.Forms
             dt2 = enlace.ObtenerAmenidadesPorTipo(idTipo);
             dgvAmenidades.DataSource= dt2;
             dgvAmenidades.Columns["IdAmenidad"].Visible = false;
-
+           */
         }
 
         private void siticoneButton4_Click(object sender, EventArgs e)
         {
-            int idTipo = (int)cmbTiposHab.SelectedValue;
+           /* int idTipo = (int)cmbTiposHab.SelectedValue;
             int cantPers = (int)txtPersonas.Value;
             string caracteristicas = txtCaracteristicas.Text;
             string nivel = txtNivel.Text;
@@ -133,6 +134,7 @@ namespace PIA_MAD.Forms
                 MessageBox.Show("Tipo de habitación actualizado correctamente.");
             else
                 MessageBox.Show("No se pudo actualizar el tipo de habitación.");
+           */
         }
 
         private void label6_Click(object sender, EventArgs e)

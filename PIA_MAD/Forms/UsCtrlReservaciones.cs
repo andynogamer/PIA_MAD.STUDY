@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1;
 using static PIA_MAD.Forms.Estructuras;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PIA_MAD.Forms
 {
@@ -68,12 +69,14 @@ namespace PIA_MAD.Forms
         {
             if (dgvHabitaciones.CurrentCell.OwningColumn.Name == "CantidadHuespedes")
             {
+                /*
                 TextBox txt = e.Control as TextBox;
                 if (txt != null)
                 {
                     txt.KeyPress -= OnlyNumbers_KeyPress;
                     txt.KeyPress += OnlyNumbers_KeyPress;
                 }
+                */
             }
         }
 
@@ -93,22 +96,17 @@ namespace PIA_MAD.Forms
         private void CargarClientes()
         {
             EnlaceDB enlace = new EnlaceDB();
-            ClientesEncontrados.DataSource = enlace.ObtenerClientes(Busqueda.Text);
+            string filtro = cmbFiltro.Text;
+            ClientesEncontrados.DataSource = enlace.ObtenerClientes(Busqueda.Text,filtro);
             ClientesEncontrados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             // Asignar nombres personalizados a las columnas que sí mostraremos
             ClientesEncontrados.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
             ClientesEncontrados.ColumnHeadersHeight = 18; // Ajusta si lo ves muy bajo
-            ClientesEncontrados.Columns["IdCliente"].HeaderText = "ID Cliente";
-            ClientesEncontrados.Columns["RFC"].HeaderText = "RFC";
-            ClientesEncontrados.Columns["Nombres"].HeaderText = "Nombre";
-            ClientesEncontrados.Columns["ApPaterno"].HeaderText = "Apellido Paterno";
-            ClientesEncontrados.Columns["ApMaterno"].HeaderText = "Apellido Materno";
-            ClientesEncontrados.Columns["Correo"].HeaderText = "Correo Electrónico";
-            ClientesEncontrados.Columns["TelCel"].HeaderText = "Teléfono Celular";
+            
 
         }
-        public void CargarComboCiudades()
+       public void CargarComboCiudades()
         {
             EnlaceDB enlace = new EnlaceDB();
             DataTable ciudades = enlace.ObtenerCiudadesDisponibles();
@@ -116,20 +114,19 @@ namespace PIA_MAD.Forms
             CiudadesDisponibles.DisplayMember = "Nombre"; // Lo que el usuario verá
             CiudadesDisponibles.ValueMember = "IdCiudad"; // Lo que realmente se usará en el código
         }
-        public void CargarHotelesCiudad()
+       public void CargarHotelesCiudad()
         {
             EnlaceDB enlace = new EnlaceDB();
             int idCiudadSeleccionada = Convert.ToInt32(((DataRowView)CiudadesDisponibles.SelectedItem)["IdCiudad"]);
-            DataTable ciudades2 = enlace.ObtenerHotelesPorCiudad2(idCiudadSeleccionada);
-            HotelesCiudad.DataSource = ciudades2;
-            HotelesCiudad.DisplayMember = "Nombre_Hotel";
-            HotelesCiudad.ValueMember = "IdHotel";
+            DataTable ciudades2 = enlace.ObtenerHotelesPorCiudad(idCiudadSeleccionada);
+            dgvHotelesDispo.DataSource = ciudades2;
+          
         }
-
+      
         private void UsCtrlReservaciones_Load(object sender, EventArgs e)
         {
             // Configurar ajuste automático de columnas
-            CargarComboCiudades();
+         CargarComboCiudades();
             
             // Configurar dtpHoy para que solo permita seleccionar fechas a partir de hoy
             dtpHoy.MinDate = DateTime.Today;
@@ -142,7 +139,10 @@ namespace PIA_MAD.Forms
             numericUpDownAnticipo.Maximum = 10000;    // Límite superior, ajusta según tu necesidad
             numericUpDownAnticipo.Increment = 0.01M;  // Asegura incrementos de 0.01 para precisión decimal
             numericUpDownAnticipo.ThousandsSeparator = true; // Separa miles si es necesario
-
+            if (cmbFiltro.Items.Count > 0)
+            {
+                cmbFiltro.SelectedIndex = 0;
+            }
 
 
         }
@@ -202,7 +202,7 @@ namespace PIA_MAD.Forms
 
         private void siticoneDateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            EnlaceDB enlace = new EnlaceDB();
+           /* EnlaceDB enlace = new EnlaceDB();
             int idHotel = Convert.ToInt32(HotelesCiudad.SelectedValue);
             dgvHabitaciones.AutoGenerateColumns = true;
             dgvHabitaciones.DataSource = enlace.ObtenerHabitacionesLibres(idHotel, dtpHoy.Value.Date, dtpMañana.Value.Date);
@@ -259,7 +259,7 @@ namespace PIA_MAD.Forms
             dgvHabitaciones.EditingControlShowing += DgvHabitaciones_EditingControlShowing;
             dgvHabitaciones.CellValidating += DgvHabitaciones_CellValidating;
 
-
+            */
 
         }
 
@@ -351,5 +351,7 @@ namespace PIA_MAD.Forms
         {
 
         }
+
+       
     }
 }
