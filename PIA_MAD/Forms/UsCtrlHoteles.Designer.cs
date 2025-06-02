@@ -55,7 +55,6 @@
             this.btnAgregarCarac = new System.Windows.Forms.Button();
             this.txtCaracteristica = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.siticoneButton4 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNivel = new System.Windows.Forms.TextBox();
@@ -76,7 +75,7 @@
             this.txtCaractHabi = new System.Windows.Forms.TextBox();
             this.btnGuardarHabi = new System.Windows.Forms.Button();
             this.dgvCaracteristicas = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnEliminarCarac = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.txtAmenidad = new System.Windows.Forms.TextBox();
             this.btnAgregarAmenidad = new System.Windows.Forms.Button();
@@ -86,6 +85,7 @@
             this.textNumHabi = new System.Windows.Forms.TextBox();
             this.btnAgregarHab = new System.Windows.Forms.Button();
             this.dgvHabi = new System.Windows.Forms.DataGridView();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ndPisos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoteles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServicios)).BeginInit();
@@ -424,18 +424,6 @@
             this.label9.TabIndex = 74;
             this.label9.Text = "Caracteristicas";
             // 
-            // label10
-            // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(6, 3);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(120, 32);
-            this.label10.TabIndex = 44;
-            this.label10.Text = "HOTELES";
-            // 
             // siticoneButton4
             // 
             this.siticoneButton4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -524,6 +512,7 @@
             // 
             // cmbTcamas
             // 
+            this.cmbTcamas.Enabled = false;
             this.cmbTcamas.FormattingEnabled = true;
             this.cmbTcamas.Items.AddRange(new object[] {
             "Individual",
@@ -642,15 +631,16 @@
             this.dgvCaracteristicas.TabIndex = 96;
             this.dgvCaracteristicas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCaracteristicas_CellContentClick);
             // 
-            // button2
+            // btnEliminarCarac
             // 
-            this.button2.Location = new System.Drawing.Point(880, 582);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(66, 23);
-            this.button2.TabIndex = 97;
-            this.button2.Text = "Eliminar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnEliminarCarac.Enabled = false;
+            this.btnEliminarCarac.Location = new System.Drawing.Point(880, 582);
+            this.btnEliminarCarac.Name = "btnEliminarCarac";
+            this.btnEliminarCarac.Size = new System.Drawing.Size(66, 23);
+            this.btnEliminarCarac.TabIndex = 97;
+            this.btnEliminarCarac.Text = "Eliminar";
+            this.btnEliminarCarac.UseVisualStyleBackColor = true;
+            this.btnEliminarCarac.Click += new System.EventHandler(this.button2_Click);
             // 
             // label19
             // 
@@ -663,6 +653,7 @@
             // 
             // txtAmenidad
             // 
+            this.txtAmenidad.Enabled = false;
             this.txtAmenidad.Location = new System.Drawing.Point(946, 372);
             this.txtAmenidad.Name = "txtAmenidad";
             this.txtAmenidad.Size = new System.Drawing.Size(168, 22);
@@ -670,6 +661,7 @@
             // 
             // btnAgregarAmenidad
             // 
+            this.btnAgregarAmenidad.Enabled = false;
             this.btnAgregarAmenidad.Location = new System.Drawing.Point(946, 400);
             this.btnAgregarAmenidad.Name = "btnAgregarAmenidad";
             this.btnAgregarAmenidad.Size = new System.Drawing.Size(75, 23);
@@ -680,6 +672,7 @@
             // 
             // btnEliminarAmenidad
             // 
+            this.btnEliminarAmenidad.Enabled = false;
             this.btnEliminarAmenidad.Location = new System.Drawing.Point(1028, 399);
             this.btnEliminarAmenidad.Name = "btnEliminarAmenidad";
             this.btnEliminarAmenidad.Size = new System.Drawing.Size(75, 23);
@@ -713,6 +706,7 @@
             // 
             // textNumHabi
             // 
+            this.textNumHabi.Enabled = false;
             this.textNumHabi.Location = new System.Drawing.Point(1633, 347);
             this.textNumHabi.Name = "textNumHabi";
             this.textNumHabi.Size = new System.Drawing.Size(100, 22);
@@ -720,6 +714,7 @@
             // 
             // btnAgregarHab
             // 
+            this.btnAgregarHab.Enabled = false;
             this.btnAgregarHab.Location = new System.Drawing.Point(1752, 344);
             this.btnAgregarHab.Name = "btnAgregarHab";
             this.btnAgregarHab.Size = new System.Drawing.Size(75, 23);
@@ -739,10 +734,22 @@
             this.dgvHabi.TabIndex = 106;
             this.dgvHabi.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(12, 9);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(82, 23);
+            this.label10.TabIndex = 107;
+            this.label10.Text = "Hoteles";
+            // 
             // UsCtrlHoteles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.dgvHabi);
             this.Controls.Add(this.btnAgregarHab);
             this.Controls.Add(this.textNumHabi);
@@ -752,7 +759,7 @@
             this.Controls.Add(this.btnAgregarAmenidad);
             this.Controls.Add(this.txtAmenidad);
             this.Controls.Add(this.label19);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnEliminarCarac);
             this.Controls.Add(this.dgvCaracteristicas);
             this.Controls.Add(this.btnGuardarHabi);
             this.Controls.Add(this.txtCaractHabi);
@@ -773,7 +780,6 @@
             this.Controls.Add(this.txtNivel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.siticoneButton4);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnAgregarCarac);
             this.Controls.Add(this.txtCaracteristica);
@@ -848,7 +854,6 @@
         private System.Windows.Forms.Button btnAgregarCarac;
         private System.Windows.Forms.TextBox txtCaracteristica;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNivel;
@@ -869,7 +874,7 @@
         private System.Windows.Forms.TextBox txtCaractHabi;
         private System.Windows.Forms.Button btnGuardarHabi;
         private System.Windows.Forms.DataGridView dgvCaracteristicas;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnEliminarCarac;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtAmenidad;
         private System.Windows.Forms.Button btnAgregarAmenidad;
@@ -879,5 +884,6 @@
         private System.Windows.Forms.TextBox textNumHabi;
         private System.Windows.Forms.Button btnAgregarHab;
         private System.Windows.Forms.DataGridView dgvHabi;
+        private System.Windows.Forms.Label label10;
     }
 }

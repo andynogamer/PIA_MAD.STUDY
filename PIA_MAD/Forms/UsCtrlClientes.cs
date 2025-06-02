@@ -158,11 +158,11 @@ namespace PIA_MAD.Forms
 
             if (cliente > 0)
             {
-                cliente = cliente - 1;
+                cliente = -1;
                 MessageBox.Show("Intentelo de neuvo, tenia seleccionado un cliente.");
                 return;
             }
-
+            /// validar que no este vacio para aplicar un return...
              var enlaces = new EnlaceDB();
             int idDir = enlaces.InsertarDireccion((int)cmbPais.SelectedValue,(int)cmdEstado.SelectedValue,(int)cmbCiudad.SelectedValue, Calle.Text);
 
@@ -176,16 +176,28 @@ namespace PIA_MAD.Forms
 
           bool ok = enlaces.InsertarCliente(txtRFC.Text,txtNombres.Text,txtApPaterno.Text,txtApMaterno.Text,idDir,txtTelCasa.Text,txtTelCel.Text,txtCorreo.Text, estadoCivilSeleccionado,dtpFechaNac.Value.Date);
             if (ok)
-                MessageBox.Show("Hotel registrado correctamente.");
+            {
+                MessageBox.Show("cliente registrado correctamente.");
+                txtNombres.Text = "";
+                txtRFC.Text = "";
+                txtApPaterno.Text = "";
+                txtApMaterno.Text = "";
+                txtCorreo.Text = "";
+                dtpFechaNac.MaxDate = DateTime.Today.AddYears(-18);
+                txtTelCasa.Text = "";
+                txtTelCel.Text = "";
+                cmbEstadoCivil.Text = "";
+            }
             else
-                MessageBox.Show("Error al registrar el hotel.");
+            {
+                MessageBox.Show("Error al registrar cliente");
+            }
             CargarClientes();
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             if (cliente > 0)
-
             {
                 var enlaces = new EnlaceDB();
                 int idDir = enlaces.InsertarDireccion((int)cmbPais.SelectedValue, (int)cmdEstado.SelectedValue, (int)cmbCiudad.SelectedValue, Calle.Text);
@@ -200,9 +212,10 @@ namespace PIA_MAD.Forms
 
                 bool ok = enlaces.ActualizarCliente(cliente, txtRFC.Text, txtNombres.Text, txtApPaterno.Text, txtApMaterno.Text, idDir, txtTelCasa.Text, txtTelCel.Text, txtCorreo.Text, estadoCivilSeleccionado, dtpFechaNac.Value.Date);
                 if (ok)
-                    MessageBox.Show("Hotel registrado correctamente.");
+                    MessageBox.Show("Cliente actualizado correctamente.");
                 else
-                    MessageBox.Show("Error al registrar el hotel.");
+                    MessageBox.Show("Error al actualizar el cliente.");
+
                 CargarClientes();
                 cliente = -1;
                 txtNombres.Text = "";
@@ -255,6 +268,10 @@ namespace PIA_MAD.Forms
                     txtTelCasa.Text = fila2["TelCasa"].ToString();
                     txtTelCel.Text = fila2["Telcel"].ToString();
                     cmbEstadoCivil.Text = fila2["Estado_Civil"].ToString();
+                    cmbPais.SelectedValue = fila2["IdPais"];
+                    cmdEstado.SelectedValue = fila2["IdEstado"];
+                    cmbCiudad.SelectedValue = fila2["IdCiudad"];
+                    Calle.Text = fila2["Domicilio"].ToString();
                 }
 
             }

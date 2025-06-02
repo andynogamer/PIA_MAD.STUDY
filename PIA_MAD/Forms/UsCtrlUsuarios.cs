@@ -316,9 +316,25 @@ namespace PIA_MAD.Forms
         private void siticoneButton3_Click_1(object sender, EventArgs e)
         {
             // validar que los campos no esten vacios...
+            if (txtNombres.Text == "" || ApPaternotxt.Text == "" || ApMaternotxt.Text == "" || TxtCorreo.Text == "" || txtNomi.Text == "" || TxtCasa.Text == "" || txtCel.Text == "" || txtContra.Text == "")
+            {
+                MessageBox.Show("llene todos los campos");
+                return;
+            }
+            
             if (idSeleccionado == -1)
             {
-                    MessageBox.Show("Seleccione un usuario!");
+                MessageBox.Show("Seleccione un usuario!");
+                txtNombres.Clear();
+                ApPaternotxt.Clear();
+                ApMaternotxt.Clear();
+                TxtCorreo.Clear();
+                txtNomi.Clear();
+                dtpNac.Value = DateTime.Today.AddYears(-18);
+                TxtCasa.Clear();
+                txtCel.Clear();
+                txtContra.Clear();
+                CargarUsuarios();
             }
             else
             {
@@ -361,6 +377,11 @@ namespace PIA_MAD.Forms
                 }
                 CargarUsuarios();
             }
+        }
+
+        private void txtNomi_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

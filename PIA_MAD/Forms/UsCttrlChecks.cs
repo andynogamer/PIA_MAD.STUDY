@@ -292,7 +292,7 @@ namespace PIA_MAD.Forms
         {
             string codigoBuscado = txtCodigoReservacionIN.Text.Trim();
 
-            // Si el usuario borra el texto, limpiamos el DataGridView
+            // Si el usuario borra el texto, limpiamos el DataGridView esto hay que hacerlo con el filtro de busqued de cliente en reservaciones
             if (string.IsNullOrEmpty(codigoBuscado))
             {
                 dgvReservaciones.DataSource = null;
@@ -301,7 +301,8 @@ namespace PIA_MAD.Forms
 
             // Instancia de EnlaceDB para buscar las reservaciones
             EnlaceDB enlace = new EnlaceDB();
-            DataTable resultados = enlace.ObtenerReservacionesFiltradas2(codigoBuscado);
+            DataTable resultados = enlace.ObtenerReservacionesFiltradas2(codigoBuscado); 
+            /// hay que cambiar a que si no tiene la fecha de hoy no se puede filtrar
 
             // Mostrar los resultados en el DataGridView
             dgvReservacionesIN.DataSource = resultados;
@@ -309,28 +310,43 @@ namespace PIA_MAD.Forms
 
         private void CheckIn_Click(object sender, EventArgs e)
         {
-
-            if (string.IsNullOrEmpty(reservacionSeleccionada.ToString()))
+            // Verificamos si hay una reservación seleccionada
+            if (reservacionSeleccionada == Guid.Empty)
             {
                 MessageBox.Show("Por favor selecciona una reservación primero.");
                 return;
             }
 
-            // Obtener la fila seleccionada
+            
             DataGridViewRow fila = dgvReservacionesIN.CurrentRow;
+
             DateTime fechaInicio = Convert.ToDateTime(fila.Cells["Fecha_Ini"].Value);
-            DateTime hoy = DateTime.Today;
+            DateTime fechaHoy = DateTime.Today;
 
-            string nuevoEstado = hoy > fechaInicio ? "CanceladaF" : "Estadia";
+            if (fechaHoy < fechaInicio.Date)
+            {
+                MessageBox.Show("Aún no es la fecha de llegada.");
+                return;
+            }
 
+            string nuevoEstado;
+
+            // Comparamos las fechas
+            if (fechaHoy == fechaInicio.Date)
+            {
+                nuevoEstado = "Estadia"; // Check-in válido
+            }
+            else
+            {
+                nuevoEstado = "CanceladaF"; // Llegó tarde, se marca como cancelada fuera de tiempo
+            }
             EnlaceDB enlace = new EnlaceDB();
             bool actualizado = enlace.ActualizarEstadoReservacion(reservacionSeleccionada.ToString(), nuevoEstado);
 
+            // Mostramos el resultado
             if (actualizado)
             {
                 MessageBox.Show($"Reservación actualizada a estado: {nuevoEstado}");
-                // Opcional: recargar el DataGridView si quieres actualizar la vista
-                // dgvReservaciones.DataSource = enlace.ObtenerReservacionesFiltradas2(...);
             }
             else
             {

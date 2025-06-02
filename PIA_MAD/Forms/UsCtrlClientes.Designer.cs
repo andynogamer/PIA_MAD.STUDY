@@ -429,12 +429,12 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(107, 561);
+            this.label17.Location = new System.Drawing.Point(72, 561);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(53, 21);
+            this.label17.Size = new System.Drawing.Size(88, 21);
             this.label17.TabIndex = 55;
-            this.label17.Text = "Calle";
+            this.label17.Text = "Domicilio:";
             // 
             // dtpFechaNac
             // 

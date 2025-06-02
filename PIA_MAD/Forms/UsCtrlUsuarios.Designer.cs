@@ -206,6 +206,7 @@
             this.txtNomi.SelectedText = "";
             this.txtNomi.Size = new System.Drawing.Size(289, 44);
             this.txtNomi.TabIndex = 5;
+            this.txtNomi.TextChanged += new System.EventHandler(this.txtNomi_TextChanged);
             this.txtNomi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomi_KeyPress);
             // 
             // label5

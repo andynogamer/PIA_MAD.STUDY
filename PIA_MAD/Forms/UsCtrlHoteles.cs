@@ -109,6 +109,16 @@ namespace PIA_MAD.Forms
         int IdtipoHab = -1;
         int IdCaracTH = 0;
         int IdAmenidad = 0;
+
+        private void Reinicia()
+        {
+             idSeleccion = -1; // este es el hotel
+             IdServicioSele = -1;
+             IdCaract = -1;
+             IdtipoHab = -1;
+             IdCaracTH = -1;
+             IdAmenidad = -1;
+        }
         public UsCtrlHoteles()
         {
             InitializeComponent();
@@ -186,10 +196,34 @@ namespace PIA_MAD.Forms
             nupCantCamas.Enabled = (haySeleccion);
             txtPrecio.Enabled = (haySeleccion);
             btnTipo.Enabled = haySeleccion;
-            txtCaractHabi.Enabled = (haySeleccion);
-            btnGuardarHabi.Enabled = (haySeleccion);
+            //txtCaractHabi.Enabled = (haySeleccion);
+            //btnGuardarHabi.Enabled = (haySeleccion);
         }
 
+        private void DesbloquearTH()
+        {
+            bool haySeleccion;
+            if (IdtipoHab > 0)
+            {
+                haySeleccion = true;
+            }
+            else
+            {
+                haySeleccion = false;
+            }
+            
+            txtCaractHabi.Enabled = haySeleccion;
+            btnGuardarHabi.Enabled = haySeleccion;
+            btnEliminarCarac.Enabled = (haySeleccion);
+            // amenidad
+            txtAmenidad.Enabled = (haySeleccion);
+            btnAgregarAmenidad.Enabled = haySeleccion;
+            btnEliminarAmenidad.Enabled = (haySeleccion);
+            // habitaciones
+            textNumHabi.Enabled = (haySeleccion);
+            btnAgregarHab.Enabled = haySeleccion;
+           
+        }
         private void CargaServicios(int hotel)
         {
             int x = hotel;
@@ -344,6 +378,9 @@ namespace PIA_MAD.Forms
                 // Suponiendo que la columna del ID se llama "IdHotel"
                 int idSeleccionado = Convert.ToInt32(filaSeleccionada.Cells["IdHotel"].Value);
                 string hotelse= Convert.ToString(filaSeleccionada.Cells["Hotel"].Value);
+                Reinicia();
+                DesbloquearTH();// bloquear tipos de habitacion y demas...
+
                 MessageBox.Show($"El registro seleccionado es: {hotelse}", "Registro seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
                 EnlaceDB enlace = new EnlaceDB();
@@ -367,6 +404,10 @@ namespace PIA_MAD.Forms
                 }
                 CargaServicios(idSeleccion);
                 cargarCaracter(idSeleccion);
+                // que no se muestre lo de habitaciones
+                CargarCaractTipo();
+                CargarAmenidad();
+                CargarHabi();
                 /// 
             }
 
@@ -576,6 +617,7 @@ namespace PIA_MAD.Forms
                 IdtipoHab = Convert.ToInt32(filaSeleccionada.Cells["IdTipo"].Value);
                 string TipoHabi = Convert.ToString(filaSeleccionada.Cells["Nivel"].Value);
                 MessageBox.Show($"El registro seleccionado es: {TipoHabi}", "Registro seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DesbloquearTH();
                 CargarCaractTipo();
                 CargarAmenidad();
                 CargarHabi();

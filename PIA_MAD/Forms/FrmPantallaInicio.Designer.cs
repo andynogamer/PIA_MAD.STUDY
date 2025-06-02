@@ -103,6 +103,7 @@
             this.siticonePanel2.Name = "siticonePanel2";
             this.siticonePanel2.Size = new System.Drawing.Size(158, 907);
             this.siticonePanel2.TabIndex = 1;
+            this.siticonePanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.siticonePanel2_Paint);
             // 
             // siticoneButton10
             // 

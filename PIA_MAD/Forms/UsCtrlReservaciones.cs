@@ -22,6 +22,7 @@ namespace PIA_MAD.Forms
             InitializeComponent();
         }
         int idClienteSeleccionado = -1;
+        int idHotelSelec = -1;
         private void DgvHabitaciones_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             if (dgvHabitaciones.Columns[e.ColumnIndex].Name == "CantidadHuespedes")
@@ -120,9 +121,70 @@ namespace PIA_MAD.Forms
             int idCiudadSeleccionada = Convert.ToInt32(((DataRowView)CiudadesDisponibles.SelectedItem)["IdCiudad"]);
             DataTable ciudades2 = enlace.ObtenerHotelesPorCiudad(idCiudadSeleccionada);
             dgvHotelesDispo.DataSource = ciudades2;
-          
+            dgvHotelesDispo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+
         }
-      
+        public void mostrarPosibles()
+        {
+            EnlaceDB enlace = new EnlaceDB();
+            dgvHabitaciones.AutoGenerateColumns = true;
+            dgvHabitaciones.DataSource = enlace.ObtenerHabitacionesLibres(idHotelSelec, dtpHoy.Value.Date, dtpMañana.Value.Date);
+            dgvHabitaciones.Columns["IdTipo"].Visible = false; // Ocultamos el ID en la UI
+            dgvHabitaciones.Columns["Nivel"].HeaderText = "Tipo de Habitación";
+            dgvHabitaciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvHabitaciones.Refresh();
+
+            // Mostrar encabezado        
+            dgvHabitaciones.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvHabitaciones.ColumnHeadersHeight = 19; // Ajusta si lo ves muy bajo
+
+            // Autoajuste
+            dgvHabitaciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvHabitaciones.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+            // Asegura altura mínima de filas
+            dgvHabitaciones.RowTemplate.Height = 25;
+            dgvHabitaciones.RowHeadersVisible = false;
+
+            // Renombrar encabezados si existen
+            if (dgvHabitaciones.Columns.Contains("PrecioxPersonaxNoche"))
+                dgvHabitaciones.Columns["PrecioxPersonaxNoche"].HeaderText = "Precio Unitario";
+            if (dgvHabitaciones.Columns.Contains("Numero_Habitacion"))
+                dgvHabitaciones.Columns["Numero_Habitacion"].HeaderText = "N° Habitación";
+            if (dgvHabitaciones.Columns.Contains("Nivel"))
+                dgvHabitaciones.Columns["Nivel"].HeaderText = "Tipo de Habitación";
+            // (continúa igual para los demás)
+
+            // Agregar columnas personalizadas si no existen
+            if (!dgvHabitaciones.Columns.Contains("Seleccionar"))
+            {
+                DataGridViewCheckBoxColumn seleccionar = new DataGridViewCheckBoxColumn
+                {
+                    Name = "Seleccionar",
+                    HeaderText = "Seleccionar",
+                    Width = 80
+                };
+                dgvHabitaciones.Columns.Insert(0, seleccionar);
+            }
+
+            if (!dgvHabitaciones.Columns.Contains("CantidadHuespedes"))
+            {
+                DataGridViewTextBoxColumn cantidad = new DataGridViewTextBoxColumn
+                {
+                    Name = "CantidadHuespedes",
+                    HeaderText = "Cantidad a Hospedar",
+                    Width = 120,
+                    ValueType = typeof(int),
+                    DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
+                };
+                dgvHabitaciones.Columns.Add(cantidad);
+            }
+            dgvHabitaciones.EditingControlShowing += DgvHabitaciones_EditingControlShowing;
+            dgvHabitaciones.CellValidating += DgvHabitaciones_CellValidating;
+
+        }
+
         private void UsCtrlReservaciones_Load(object sender, EventArgs e)
         {
             // Configurar ajuste automático de columnas
@@ -198,69 +260,13 @@ namespace PIA_MAD.Forms
         private void siticoneDateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             dtpMañana.MinDate = dtpHoy.Value.AddDays(1);
+            mostrarPosibles();
         }
 
         private void siticoneDateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-           /* EnlaceDB enlace = new EnlaceDB();
-            int idHotel = Convert.ToInt32(HotelesCiudad.SelectedValue);
-            dgvHabitaciones.AutoGenerateColumns = true;
-            dgvHabitaciones.DataSource = enlace.ObtenerHabitacionesLibres(idHotel, dtpHoy.Value.Date, dtpMañana.Value.Date);
-            dgvHabitaciones.Columns["IdTipo"].Visible = false; // Ocultamos el ID en la UI
-            dgvHabitaciones.Columns["Nivel"].HeaderText = "Tipo de Habitación";
-            dgvHabitaciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvHabitaciones.Refresh();
-
-            // Mostrar encabezado        
-            dgvHabitaciones.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            dgvHabitaciones.ColumnHeadersHeight = 19; // Ajusta si lo ves muy bajo
-
-            // Autoajuste
-            dgvHabitaciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvHabitaciones.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-
-            // Asegura altura mínima de filas
-            dgvHabitaciones.RowTemplate.Height = 25;
-            dgvHabitaciones.RowHeadersVisible = false;
-
-            // Renombrar encabezados si existen
-            if (dgvHabitaciones.Columns.Contains("PrecioxPersonaxNoche"))
-                dgvHabitaciones.Columns["PrecioxPersonaxNoche"].HeaderText = "Precio Unitario";
-            if (dgvHabitaciones.Columns.Contains("Numero_Habitacion"))
-                dgvHabitaciones.Columns["Numero_Habitacion"].HeaderText = "N° Habitación";
-            if (dgvHabitaciones.Columns.Contains("Nivel"))
-                dgvHabitaciones.Columns["Nivel"].HeaderText = "Tipo de Habitación";
-            // (continúa igual para los demás)
-
-            // Agregar columnas personalizadas si no existen
-            if (!dgvHabitaciones.Columns.Contains("Seleccionar"))
-            {
-                DataGridViewCheckBoxColumn seleccionar = new DataGridViewCheckBoxColumn
-                {
-                    Name = "Seleccionar",
-                    HeaderText = "Seleccionar",
-                    Width = 80
-                };
-                dgvHabitaciones.Columns.Insert(0, seleccionar);
-            }
-
-            if (!dgvHabitaciones.Columns.Contains("CantidadHuespedes"))
-            {
-                DataGridViewTextBoxColumn cantidad = new DataGridViewTextBoxColumn
-                {
-                    Name = "CantidadHuespedes",
-                    HeaderText = "Cantidad a Hospedar",
-                    Width = 120,
-                    ValueType = typeof(int),
-                    DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
-                };
-                dgvHabitaciones.Columns.Add(cantidad);
-            }
-            dgvHabitaciones.EditingControlShowing += DgvHabitaciones_EditingControlShowing;
-            dgvHabitaciones.CellValidating += DgvHabitaciones_CellValidating;
-
-            */
-
+            mostrarPosibles();
+          
         }
 
         private void Reservarbtn_Click(object sender, EventArgs e)
@@ -279,7 +285,7 @@ namespace PIA_MAD.Forms
             foreach (DataGridViewRow fila in dgvHabitaciones.Rows)
             {
                 DataGridViewCheckBoxCell checkCell = fila.Cells["Seleccionar"] as DataGridViewCheckBoxCell; // Acceder al CheckBox
-
+                // todo esto ya no se va a ocupar
                 if (checkCell != null && checkCell.Value != null && Convert.ToBoolean(checkCell.Value) == true) // Validar selección
                 {
                     if (fila.Cells["CantidadHuespedes"].Value != null &&
@@ -328,6 +334,8 @@ namespace PIA_MAD.Forms
 
                 // Limpiar DataGridView después de la reserva
                 dgvHabitaciones.DataSource = null;
+                dgvHabitaciones.Columns.Remove("Seleccionar");
+                dgvHabitaciones.Columns.Remove("CantidadHuespedes");
             }
             else
             {
@@ -352,6 +360,25 @@ namespace PIA_MAD.Forms
 
         }
 
-       
+        private void dgvHotelesDispo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dgvHotelesDispo.Rows[e.RowIndex];
+                string nombreCompleto = $"{fila.Cells["Nombre_Hotel"].Value}";
+                DialogResult result = MessageBox.Show($"¿Desea seleccionar a:\n\n{nombreCompleto}\n?",
+                                                    "Confirmar Hotel",
+                                                    MessageBoxButtons.YesNo,
+                                                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    idHotelSelec = Convert.ToInt32(fila.Cells["IdHotel"].Value);
+                    nombreCompleto = $"Hotel seleccionado:: {nombreCompleto}";
+                }
+               
+            }
+            mostrarPosibles();
+        }
     }
 }

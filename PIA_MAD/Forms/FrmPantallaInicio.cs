@@ -117,5 +117,10 @@ namespace PIA_MAD.Forms
             UsCtrlCancelaciones ctrlCancelaciones = new UsCtrlCancelaciones();
             ShowView(ctrlCancelaciones);
         }
+
+        private void siticonePanel2_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
     }
 }
