@@ -20,11 +20,25 @@ namespace PIA_MAD.Forms
         public void BuscarSinHotel()
         {
             EnlaceDB enlace = new EnlaceDB();
-            DataTable ventas = enlace.ObtenerReporteOcupacionHotel((int)cmbPais.SelectedValue, (int)CiudadesDisponibles.SelectedValue, Convert.ToInt32(dateTimePicker1.Text),null);
+            DataSet informeData = enlace.ObtenerReporteOcupacionHotel((int)CiudadesDisponibles.SelectedValue, Convert.ToInt32(dateTimePicker1.Text), null); ;
 
-            Report1.DataSource = ventas;
-            DataTable reporte2 = enlace.ObtenerResumenOcupacionHotel((int)cmbPais.SelectedValue, (int)CiudadesDisponibles.SelectedValue, Convert.ToInt32(dateTimePicker1.Text),null);
-            Repoert2.DataSource = reporte2;
+            if (checkBox1.Checked)
+            {
+                informeData = enlace.ObtenerReporteOcupacionHotel((int)CiudadesDisponibles.SelectedValue, Convert.ToInt32(dateTimePicker1.Text), (int)HotelesCiudad.SelectedValue);
+            }
+            
+            if (informeData != null && informeData.Tables.Count > 0)
+            {
+                DataTable tablaDetalle = informeData.Tables[0];
+                Report1.DataSource = tablaDetalle;
+            }
+            if (informeData != null && informeData.Tables.Count > 1)
+            {
+                DataTable tablaDetalle = informeData.Tables[1];
+                Repoert2.DataSource = tablaDetalle;
+            }
+
+
         }
         private void CargarPaises()
         {
@@ -86,11 +100,9 @@ namespace PIA_MAD.Forms
         {
             /// hay que modifcar a la funcion correspondiente son 2 
             EnlaceDB enlace = new EnlaceDB();
-            DataTable ventas = enlace.ObtenerReporteOcupacionHotel((int)cmbPais.SelectedValue, (int)CiudadesDisponibles.SelectedValue, Convert.ToInt32(dateTimePicker1.Text), (int)HotelesCiudad.SelectedValue);
+            DataSet ventas = enlace.ObtenerReporteOcupacionHotel( (int)CiudadesDisponibles.SelectedValue, Convert.ToInt32(dateTimePicker1.Text), (int)HotelesCiudad.SelectedValue);
             
-            Report1.DataSource = ventas;
-            DataTable reporte2 = enlace.ObtenerResumenOcupacionHotel((int)cmbPais.SelectedValue, (int)CiudadesDisponibles.SelectedValue, Convert.ToInt32(dateTimePicker1.Text), (int)HotelesCiudad.SelectedValue);
-            Repoert2.DataSource = reporte2;
+            
         }
 
         private void siticoneButton2_Click(object sender, EventArgs e)

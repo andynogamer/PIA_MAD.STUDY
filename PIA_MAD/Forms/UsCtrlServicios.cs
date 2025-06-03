@@ -22,18 +22,13 @@ namespace PIA_MAD.Forms
         private void CargarHoteles()
         {
             EnlaceDB enlace = new EnlaceDB();
-            cmbHoteles.DisplayMember = "Nombre_Hotel";   // Lo que el usuario verá
-            cmbHoteles.ValueMember = "IdHotel";          // El valor interno asociado
-            cmbHoteles.DataSource = enlace.ObtenerHoteles();  // Método que devuelve DataTable
-            cmbHoteles.SelectedIndex = -1; // opcional, para que no haya selección inicial
+            
         }
 
         private void UsCtrlServicios_Load(object sender, EventArgs e)
         {
             CargarHoteles();
-            Costo.Minimum = 1;
-            Costo.Increment = 10;
-            Costo.ThousandsSeparator = true;
+            
             Cantidad.Minimum = 1;
             Cantidad.Increment = 1;
         }
@@ -41,11 +36,8 @@ namespace PIA_MAD.Forms
         private void siticoneButton2_Click(object sender, EventArgs e)
         {
             EnlaceDB enlace = new EnlaceDB();
-            bool ok = enlace.InsertarServicios((int)cmbHoteles.SelectedValue, ServicioNombre.Text, Costo.Value);
-            if (ok)
-                MessageBox.Show("Servicio agregado correctamente.");
-            else
-                MessageBox.Show("No se pudo agregar servicio");
+           
+            
         }
 
         private void Cantidad_ValueChanged(object sender, EventArgs e)
@@ -55,26 +47,13 @@ namespace PIA_MAD.Forms
 
         private void cmbHoteles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            EnlaceDB enlace = new EnlaceDB();
-            DataTable dataTable = new DataTable();
-            int idHotel = Convert.ToInt32(cmbHoteles.SelectedValue);
-            dataTable = enlace.ObtenerServiciosPorHotel(idHotel);
-            ServiciosHotel.DataSource = dataTable;
+            
 
         }
 
         private void ServiciosHotel_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // Asegura que no sea encabezado
-            {
-                DataGridViewRow fila = ServiciosHotel.Rows[e.RowIndex];
-
-                idServicio = Convert.ToInt32(fila.Cells["IdServicio"].Value);
-                string nombreServicio = fila.Cells["Nombre"].Value.ToString();
-
-                // Mostrar en un MessageBox
-                MessageBox.Show($"Seleccionaste el servicio: {nombreServicio}\nID: {idServicio}", "Servicio Seleccionado");
-            }
+            
         }
 
         private void siticoneTextBox1_TextChanged(object sender, EventArgs e)

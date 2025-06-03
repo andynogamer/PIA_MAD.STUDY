@@ -16,6 +16,15 @@ namespace PIA_MAD.Forms
     {
         private Guid reservacionSeleccionada;
 
+        private void CleanComponents()
+        {
+            txtCodigoReservacion.Clear();
+            dgvReservaciones.Rows.Clear();
+            
+
+
+        }
+
         public UsCttrlChecks()
         {
             InitializeComponent();
@@ -47,7 +56,7 @@ namespace PIA_MAD.Forms
         {
             decimal totalHospedaje = 0;
             decimal totalServicios = 0;
-            decimal totalDescuentos = 0;
+           
             decimal anticipo = Convert.ToDecimal(dgvReservaciones.SelectedRows[0].Cells["Pago_Res"].Value); // Tomado de la BD
 
             // Sumar costos de hospedaje
@@ -62,21 +71,11 @@ namespace PIA_MAD.Forms
                 totalServicios += Convert.ToDecimal(fila.Cells["Subtotal"].Value);
             }
 
-            // Restar descuentos aplicados
-            foreach (DataGridViewRow fila in dgvDescuentos.Rows)
-            {
-                decimal valorDescuento = Convert.ToDecimal(fila.Cells["Valor"].Value.ToString().Replace("%", "").Replace("$", ""));
-                bool esPorcentaje = fila.Cells["Tipo"].Value.ToString() == "Porcentaje";
-
-                if (esPorcentaje)
-                    totalDescuentos += (totalHospedaje + totalServicios) * (valorDescuento / 100);
-                else
-                    totalDescuentos += valorDescuento;
-            }
+            
 
             // Calcular total final restando anticipo
-            decimal totalFinal = (totalHospedaje + totalServicios) - totalDescuentos - anticipo;
-            txtTotalFinal.Text = totalFinal.ToString("C2"); // Muestra el monto actualizado
+            decimal totalFinal = (totalHospedaje + totalServicios) - anticipo;
+            
         }
 
 
@@ -107,6 +106,11 @@ namespace PIA_MAD.Forms
 
         private void siticoneButton1_Click(object sender, EventArgs e)
         {
+            if (dgvReservaciones.RowCount == 0)
+            {
+                MessageBox.Show("No ha seleccionado algun dato...");
+                return;
+            }
             DateTime fechaSalida = Convert.ToDateTime(dgvReservaciones.SelectedRows[0].Cells["Fecha_Fin"].Value);
 
             if (fechaSalida > DateTime.Today)
@@ -181,38 +185,33 @@ namespace PIA_MAD.Forms
 
             decimal totalHospedaje = 0;
             decimal totalServicios = 0;
-            decimal totalDescuentos = 0;
+            
 
             // Calcular el total de hospedaje desde `DataGridView`
             foreach (DataGridViewRow fila in dgvHabitacionesReservadas.Rows)
             {
                 totalHospedaje += Convert.ToDecimal(fila.Cells["TotalHabitacion"].Value);
             }
-
+            EnlaceDB enlace = new EnlaceDB();
             // Calcular el total de servicios utilizados
             foreach (DataGridViewRow fila in dgvServiciosUtilizados.Rows)
             {
-                totalServicios += Convert.ToDecimal(fila.Cells["Subtotal"].Value);
+                if ((fila.Cells["Cantidad"].Value) != DBNull.Value)
+                {
+                    
+                    totalServicios += (Convert.ToDecimal(fila.Cells["Costo"].Value) * Convert.ToDecimal(fila.Cells["Cantidad"].Value));
+
+                    bool isNotEmpty = enlace.AgregarServicioAReservacion(idReservacion, Convert.ToInt32(fila.Cells["IdServicio"].Value), Convert.ToInt32(fila.Cells["Cantidad"].Value));
+                }
+                
             }
 
-            // Restar descuentos aplicados
-            foreach (DataGridViewRow fila in dgvDescuentos.Rows)
-            {
-                decimal valorDescuento = Convert.ToDecimal(fila.Cells["Valor"].Value.ToString().Replace("%", "").Replace("$", ""));
-                bool esPorcentaje = fila.Cells["Tipo"].Value.ToString() == "Porcentaje";
-
-                if (esPorcentaje)
-                    totalDescuentos += (totalHospedaje + totalServicios) * (valorDescuento / 100);
-                else
-                    totalDescuentos += valorDescuento;
-            }
-
-            // Calcular total final (el anticipo se obtiene directamente en SQL)
-            decimal totalFinal = (totalHospedaje + totalServicios) - totalDescuentos;
+            
+            decimal totalFinal = (totalHospedaje + totalServicios);
 
             // Guardar la factura en la base de datos
-            EnlaceDB enlace = new EnlaceDB();
-            int idFactura = enlace.GuardarFactura(idReservacion, totalHospedaje, totalServicios, totalDescuentos, totalFinal);
+           
+            int idFactura = enlace.GuardarFactura(idReservacion, totalHospedaje, totalServicios, totalFinal);
 
             if (idFactura > 0)
             {
@@ -226,6 +225,8 @@ namespace PIA_MAD.Forms
                 {
                     MessageBox.Show("Estado de la reservación actualizado a 'Efectuada'.", "Estado actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     enlace.GenerarFacturaArchivo(idReservacion);
+
+                    CleanComponents();
 
                 }
                 else

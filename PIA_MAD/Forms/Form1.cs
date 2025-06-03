@@ -33,6 +33,7 @@ namespace PIA_MAD
 
             if (exito)
             {
+                enlace.VerificarFechaReservacion();
                 MessageBox.Show($"Bienvenido");
                 /// if para mostrar un menu u/otro
                 if (Estructuras.SesionUsuario.TipoUsu == 1)

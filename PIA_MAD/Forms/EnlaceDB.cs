@@ -324,17 +324,17 @@ namespace WindowsFormsApplication1
 
             return tabla;
         }
-        public DataTable ObtenerReporteCliente(string Dato, int año)
+        public DataTable ObtenerReporteCliente(int id, int? año=null)
         {
             DataTable tabla = new DataTable();
 
             try
             {
                 conectar();
-                SqlCommand comando = new SqlCommand("ReporteCliente", _conexion);
+                SqlCommand comando = new SqlCommand("ObtenerHistorialCliente", _conexion);
                 comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.AddWithValue("@busqueda", Dato);
-                comando.Parameters.AddWithValue("@anio", año);
+                comando.Parameters.AddWithValue("@IdCliente", id);
+                comando.Parameters.AddWithValue("@Anio", año);
                 SqlDataAdapter adaptador = new SqlDataAdapter(comando);
                 adaptador.Fill(tabla);
             }
@@ -376,18 +376,18 @@ namespace WindowsFormsApplication1
             return tabla;
         } // este hay que eliminarlo
 
-        public DataTable ObtenerReporteVentas(int Pais,int ciudad, int año , int idHotel)
+        public DataTable ObtenerReporteVentas(int Pais,int ciudad, int año , int? idHotel=null)
         {
             DataTable tabla = new DataTable();
 
             try
             {
                 conectar();
-                SqlCommand comando = new SqlCommand("sp_ReporteIngresosHotel", _conexion);
+                SqlCommand comando = new SqlCommand("ObtenerReporteVentas", _conexion);
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@IdPais", Pais);
+                comando.Parameters.AddWithValue("@Anio", año);
                 comando.Parameters.AddWithValue("@IdCiudad", ciudad);
-                comando.Parameters.AddWithValue("@anio", año);
                 comando.Parameters.AddWithValue("@IdHotel", idHotel);
                 SqlDataAdapter adaptador = new SqlDataAdapter(comando);
                 adaptador.Fill(tabla);
@@ -403,6 +403,9 @@ namespace WindowsFormsApplication1
 
             return tabla;
         } // este hay que eliminarlo
+
+
+
         public DataTable ObtenerReporteVentas2(int Pais, int ciudad, int año)
         {
             DataTable tabla = new DataTable();
@@ -429,17 +432,18 @@ namespace WindowsFormsApplication1
 
             return tabla;
         } // este hay que eliminarlo
-        public DataTable ObtenerReporteOcupacionHotel(int pais, int ciudad, int anio, int? idHotel = null)
+
+        public DataSet ObtenerReporteOcupacionHotel( int ciudad, int anio, int? idHotel = null)
         {
-            DataTable tabla = new DataTable();
+            DataSet tabla = new DataSet();
 
             try
             {
                 conectar();
-                SqlCommand comando = new SqlCommand("Reporte_Ocupacion_Hotel", _conexion);
+                SqlCommand comando = new SqlCommand("ObtenerInformeOcupacionHotel", _conexion);
                 comando.CommandType = CommandType.StoredProcedure;
 
-                comando.Parameters.AddWithValue("@IdPais", pais);
+           
                 comando.Parameters.AddWithValue("@IdCiudad", ciudad);
                 comando.Parameters.AddWithValue("@Anio", anio);
 
@@ -462,7 +466,9 @@ namespace WindowsFormsApplication1
             }
 
             return tabla;
-        } // este hay que eliminarlo
+        }
+
+        
         public DataTable ObtenerResumenOcupacionHotel(int pais, int ciudad, int anio, int? idHotel = null)
         {
             DataTable tabla = new DataTable();
@@ -1362,7 +1368,7 @@ namespace WindowsFormsApplication1
             try
             {
                 conectar();
-                SqlCommand comando = new SqlCommand("ObtenerHotelesPorCiudad2", _conexion);
+                SqlCommand comando = new SqlCommand("VerHotelesCiudad", _conexion);
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@IdCiudad", idCiudad);
 
@@ -1406,7 +1412,7 @@ namespace WindowsFormsApplication1
                         {
                             string idFactura = reader["IdFactura"].ToString();
                             string nombreHotel = reader["Nombre_Hotel"].ToString();
-                            string zona = reader["Zona_turistica"].ToString();
+                            
                             string cliente = reader["NombreCliente"].ToString();
                             string correo = reader["Correo"].ToString();
                             string tel = reader["TelCel"].ToString();
@@ -1416,13 +1422,13 @@ namespace WindowsFormsApplication1
                             anticipo = Convert.ToDecimal(reader["Anticipo"]);
                             decimal totalHospedaje = Convert.ToDecimal(reader["TotalHospedaje"]);
                             decimal totalServicios = Convert.ToDecimal(reader["TotalServicios"]);
-                            totalDescuentos = Convert.ToDecimal(reader["TotalDescuentos"]);
+                            
                             decimal totalFinal = Convert.ToDecimal(reader["TotalFinal"]);
                             subtotal= totalHospedaje + totalServicios;
                            iva= subtotal * 0.16m;
                              totalConIVA = totalFinal + iva;
 
-                            contenido += $"Factura No.: {idFactura}\n{nombreHotel}\n{zona}\n\n";
+                            contenido += $"Factura No.: {idFactura}\n{nombreHotel}\\n\n";
                             contenido += $"Fecha de emisión: {fechaEmision}\n";
                             contenido += $"Código de reservación: {idReservacion}\n";
                             contenido += $"Cliente: {cliente}\nTeléfono: {tel}\nCorreo: {correo}\n\n";
@@ -1583,7 +1589,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public int GuardarFactura(Guid idReservacion, decimal totalHospedaje, decimal totalServicios, decimal totalDescuentos, decimal totalFinal)
+        public int GuardarFactura(Guid idReservacion, decimal totalHospedaje, decimal totalServicios, decimal totalFinal)
         {
             int idFactura = 0;
 
@@ -1598,7 +1604,6 @@ namespace WindowsFormsApplication1
                     comando.Parameters.AddWithValue("@IdReservacion", idReservacion);
                     comando.Parameters.AddWithValue("@TotalHospedaje", totalHospedaje);
                     comando.Parameters.AddWithValue("@TotalServicios", totalServicios);
-                    comando.Parameters.AddWithValue("@TotalDescuentos", totalDescuentos);
                     //comando.Parameters.AddWithValue("@TotalFinal", totalFinal);
 
                     idFactura = Convert.ToInt32(comando.ExecuteScalar());
@@ -1678,6 +1683,30 @@ namespace WindowsFormsApplication1
             catch (SqlException ex)
             {
                 MessageBox.Show("Error al insertar habitaciones reservadas: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
+
+        public void VerificarFechaReservacion()
+        {
+            try
+            {
+                conectar();
+
+                
+                
+                    SqlCommand cmd = new SqlCommand("ProcesarCancelacionReservacionesVencidas", _conexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    
+                    cmd.ExecuteNonQuery();
+                
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al verificar reservaciones vencidas " + ex.Message);
             }
             finally
             {
@@ -1866,6 +1895,62 @@ namespace WindowsFormsApplication1
 
             return exito;
         }
+
+        public DataTable ObtenerClientesFormatoRFC()
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("ObtenerClientesFormatoRFC", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                adaptador.Fill(tabla);
+            }
+            catch (SqlException ex)
+            {
+                // Log o mensaje si deseas
+                MessageBox.Show("Error al obtener Clientes: " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+        public bool AgregarServicioAReservacion(Guid idReservacion, int idServicio, int cantidad)
+        {
+            bool exito = false;
+            try
+            {
+                conectar();
+                SqlCommand comando = new SqlCommand("AgregarServicioAReservacion", _conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdReservacion", idReservacion);
+                comando.Parameters.AddWithValue("@IdServicio", idServicio);
+                comando.Parameters.AddWithValue("@CantidadUtilizada", cantidad);
+
+
+                int rows = comando.ExecuteNonQuery();
+                // si devuelve –1 o >0 → éxito
+                exito = (rows != 0);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al insertar Servicio " + ex.Message);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return exito;
+        }
+
         public bool InsertarServicioReservacion(Guid idReservacion, int idServicio, int cantidadUtilizada = 1)
         {
             bool exito = false;

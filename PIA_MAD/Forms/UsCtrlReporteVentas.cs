@@ -20,7 +20,7 @@ namespace PIA_MAD.Forms
         public void BuscarSinHotel()
         {
             EnlaceDB enlace = new EnlaceDB();
-            DataTable ventas = enlace.ObtenerReporteVentas2((int)cmbPais.SelectedValue, (int)CiudadesDisponibles.SelectedValue, Convert.ToInt32(dateTimePicker1.Text));
+            DataTable ventas = enlace.ObtenerReporteVentas((int)cmbPais.SelectedValue, (int)CiudadesDisponibles.SelectedValue, Convert.ToInt32(dateTimePicker1.Text));
             Ventas.DataSource = ventas;
         }
         public void CargarComboCiudades()

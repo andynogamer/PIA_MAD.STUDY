@@ -153,9 +153,21 @@ namespace PIA_MAD.Forms
 
         }
 
+        private bool IsNotFilled()
+        {
+            return (txtNombres.Text == "" || txtApPaterno.Text == "" || txtRFC.Text == "" || txtTelCel.Text == "" || txtTelCasa.Text == "" || txtCorreo.Text == "" || cmbEstadoCivil.SelectedIndex == -1
+                || cmbPais.SelectedIndex == -1 || cmdEstado.SelectedIndex == -1 || cmbCiudad.SelectedIndex == -1 || Calle.Text == "");
+        }
+
+
         private void btnGuardarCli_Click(object sender, EventArgs e)
         {
-
+            if (IsNotFilled())
+            {
+                MessageBox.Show("Tiene que rellenar todos los campos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            
             if (cliente > 0)
             {
                 cliente = -1;
@@ -197,6 +209,13 @@ namespace PIA_MAD.Forms
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
+
+            if (IsNotFilled())
+            {
+                MessageBox.Show("Tiene que rellenar todos los campos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (cliente > 0)
             {
                 var enlaces = new EnlaceDB();
